@@ -47,8 +47,8 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Service Name</label>
-                                    <input name="name" class="form-control @error('name') is-invalid @enderror" type="text" placeholder="Service Name">
-                                    @error('name')
+                                    <input name="service_name" class="form-control @error('service_name') is-invalid @enderror" type="text" placeholder="Service Name">
+                                    @error('service_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -76,10 +76,10 @@
  -->                                <div class="form-group col-md-6">
                                     <label class="control-label">Category</label>
 
-                                    <select name="category_id" class="form-control">
+                                    <select name="category_name" class="form-control">
                                         <option>---Select Category---</option>
                                         @foreach($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            <option value="{{$category->name}}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
 
@@ -92,8 +92,8 @@
                                 
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Service Fee</label>
-                                    <input name="service_fee" class="form-control @error('sales_price') is-invalid @enderror" type="number" placeholder="Enter Service Fee">
-                                    @error('sales_price')
+                                    <input name="service_fee" class="form-control @error('service_fee') is-invalid @enderror" type="number" placeholder="Enter Service Fee">
+                                    @error('service_fee')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -122,17 +122,13 @@
                                 <div id="example-2" class="content">
                                     <div class="group row">
                                         <div class="form-group col-md-5">
-                                             <select name="supplier_id[]" class="form-control">
+                                             <select name="id[]" class="form-control">
                                                 <option>Select Employee</option>
-                                                @foreach($suppliers as $supplier)
-                                                    <option value="{{$supplier->id}}">{{$supplier->name}} </option>
+                                                @foreach($users as $user)
+                                                    <option value="{{$user->id}}">{{$user->f_name}} </option>
                                                 @endforeach
                                             </select>
                                          </div>
-                                <!--         <div class="form-group col-md-5">
-                                             <input name="supplier_price[]" class="form-control @error('supplier_price') is-invalid @enderror" type="number" placeholder="Enter Sales Price">
-                                            <span class="text-danger">{{ $errors->has('additional_body') ? $errors->first('body') : '' }}</span>
-                                        </div> -->
                                         <div class="form-group col-md-2">
                                             <button type="button" id="btnAdd-2" class="btn btn-primary float-right ml-2"><i class="fa fa-plus"></i></button>
                                             <button type="button" class="btn btn-danger btnRemove float-right"><i class="fa fa-trash"></i></button>
@@ -164,7 +160,7 @@
             var maxField = 10; //Input fields increment limitation
             var addButton = $('.add_button'); //Add button selector
             var wrapper = $('.field_wrapper'); //Input field wrapper
-            var fieldHTML = '<div><select name="supplier_id[]" class="form-control"><option class="form-control">Select Supplier</option>@foreach($suppliers as $supplier)<option value="{{$supplier->id}}">{{$supplier->name}}</option>@endforeach</select><input name="supplier_price[]" class="form-control" type="text" placeholder="Enter Sales Price"><a href="javascript:void(0);" class="remove_button btn btn-danger" title="Delete field"><i class="fa fa-minus"></i></a></div>'
+            var fieldHTML = '<div><select name="user_id[]" class="form-control"><option class="form-control">Select Employee</option>@foreach($users as $user)<option value="{{$user->id}}">{{$user->name}}</option>@endforeach</select><a href="javascript:void(0);" class="remove_button btn btn-danger" title="Delete field"><i class="fa fa-minus"></i></a></div>'
             var x = 1; //Initial field counter is 1
 
             //Once add button is clicked

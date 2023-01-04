@@ -10,7 +10,7 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-th-list"></i> Services Table</h1>
+                <h1><i class="fa fa-th-list"></i> Manage Services</h1>
                 <!-- <p>Table to display analytical data effectively</p>/ -->
             </div>
             <ul class="app-breadcrumb breadcrumb side">
@@ -42,7 +42,7 @@
                              @foreach($services as $service)
                                  <tr>
                                      <td>{{$service->service_name}}</td>
-                                     <td>{{$service->category_id}}</td>
+                                     <td>{{$service->category_name}}</td>
                                      <td>{{$service->service_fee}}</td>
                                  
                                      <td>

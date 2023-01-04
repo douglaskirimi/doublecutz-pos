@@ -16,11 +16,11 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->bigIncrements('id'); 
             $table->string('service_name');
-            $table->integer('category_id');
+            $table->string('category_name');
             $table->string('service_fee');
             $table->string('status')->default('active');  
-            $table->foreign('category_id')
-                  ->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_name')
+                  ->references('category_name')->on('categories')->onDelete('cascade');
             // $table->string('tax_id');
             $table->timestamps();
         });

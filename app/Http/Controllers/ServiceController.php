@@ -8,6 +8,7 @@ use App\Supplier;
 use App\Tax;
 use App\Unit;
 use App\Service;
+use App\User;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -35,13 +36,14 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        $suppliers =Supplier::all();
+        $users =User::where('role_id','=',2)->get();
+        // dd($users);
         $categories = Category::all();
         $taxes = Tax::all();
    
         // return view('services.create', compact('categories'));
    
-        return view('services.create', compact('categories','taxes','suppliers'));
+        return view('services.create', compact('categories','taxes','users'));
     }
 
     /**
@@ -52,19 +54,20 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
 
          $request->validate([
             'service_name' => 'required|min:3|unique:services|regex:/^[a-zA-Z ]+$/',
-            'category_id' => 'required',
+            'category_name' => 'required',
             'service_fee' => 'required',
             
         ]);
 
 
         $service = new Service();
-        $service->name = $request->name;
-        $product->category_id = $request->category_id;
-        $product->service_fees = $request->service_fees;
+        $service->service_name = $request->service_name;
+        $service->category_name = $request->category_name;
+        $service->service_fee = $request->service_fee;
         // $product->serial_number = $request->serial_number;
         // $product->model = $request->model;
         // $product->tax_id = $request->tax_id;
@@ -80,7 +83,10 @@ class ServiceController extends Controller
         //     $supplier->price = $request->supplier_price[$key];
         //     $supplier->save();
         // }
-        return redirect()->back()->with('message', 'Service Created Successfully');
+        // return redirect()->back()->with('message', 'Service Created Successfully');
+
+        $services = Service::all();
+        return view('services.index', compact('services'));
     }
 
     /**

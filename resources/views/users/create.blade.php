@@ -65,9 +65,9 @@
                             <div class="form-group col-md-8">
                                 <label class="control-label">Role </label>
                                 <select class="form-control" name="role_id" >
-                                    <option>Select Role </option>
-                                    @foreach($roles as $role)
-                                        <option value="{{$role->id}}">{{$role->name}}</option>
+                                    <option>Select Specialization </option>
+                                    @foreach($categories as $specialization)
+                                        <option value="{{$role->id}}">{{$category->category_name}}</option>
                                     @endforeach
                                 </select>
                                 @error('details')

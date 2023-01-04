@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use App\User;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +31,8 @@ class UsersController extends Controller
     public function create()
     {
         $roles=Role::all();
-        return view('users.create',compact('roles'));
+        $categories=Category::all();
+        return view('users.create',compact('roles','categories'));
     }
 
     /**
