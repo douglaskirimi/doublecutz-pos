@@ -44,11 +44,11 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">Product Name</th>
-                                <th scope="col">Qty</th>
+                                <th scope="col">Service Name</th>
+                                <th scope="col">Heads</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Discount</th>
-                                <th scope="col">Amount</th>
+                                <th scope="col">Service Fee</th>
                                 <th scope="col"><a class="addRow"><i class="fa fa-plus"></i></a></th>
                             </tr>
                             </thead>
