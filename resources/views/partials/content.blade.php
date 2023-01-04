@@ -11,25 +11,25 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-lg-3">
-            <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+            <div class="widget-small primary coloured-icon"><i class="icon fa fa-star fa-3x"></i>
                 <div class="info">
                     <h4>Services</h4>
-                    <p><b>{{\App\Product::count()??'0'}}</b></p>
+                    <p><b>{{\App\Service::count()??'0'}}</b></p>
                 </div>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-3">
-            <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
+            <div class="widget-small danger coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
                 <div class="info">
                     <h4>Categories</h4>
-                    <p><b>{{number_format(\App\Invoice::where('status','active')->where(DB::raw("(total-paid)"),'>','0')->count())}}</b></p>
+                    <p><b>{{\App\Category::count()??'0'}}</b></p>
                 </div>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-3">
-            <div class="widget-small info coloured-icon"><i class="icon fa fa-money fa-3x"></i>
+            <div class="widget-small info coloured-icon"><i class="icon fa fa-users fa-3x"></i>
                 <div class="info">
                     <h4>Customers</h4>
                     <p><b>{{\App\Customer::count()??'0'}}</b></p>
@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="col-md-6 col-lg-3">
-            <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+            <div class="widget-small warning coloured-icon"><i class="icon fa fa-money fa-3x"></i>
                 <div class="info">
                     <h4>Sales</h4>
                     <p><b>Ksh {{number_format(\App\Invoice::whereDate('created_at',\Carbon\Carbon::today())->sum('total'))??'0'}}</b></p>
@@ -58,7 +58,7 @@
         </div>
         <div class="col-md-6">
             <div class="tile">
-                <h3 class="tile-title">Invoices</h3>
+                <h3 class="tile-title">Daily Sales</h3>
                 <div class="embed-responsive embed-responsive-16by9">
                     <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
                 </div>

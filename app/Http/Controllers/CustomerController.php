@@ -54,8 +54,9 @@ class CustomerController extends Controller
         $customer->details = $request->details;
  
         $customer->save();
+        $customers = Customer::all();
 
-        return redirect()->back()->with('message', 'Customer Created Successfully');
+        return view('customer.index',compact('customers'))->with('message', 'Customer Created Successfully');
     }
 
     /**
@@ -106,7 +107,11 @@ class CustomerController extends Controller
      
         $customer->save();
 
-        return redirect()->back()->with('message', 'Customer Updated Successfully');
+
+        $customers = Customer::all();
+        return view('customer.index', compact('customers'))->with('message', 'Customer Updated Successfully');
+
+        // return redirect()->back()->with('message', 'Customer Updated Successfully');
     }
 
     /**

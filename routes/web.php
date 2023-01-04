@@ -28,6 +28,7 @@ Route::resource('unit', 'UnitController');
 Route::resource('supplier', 'SupplierController');
 Route::resource('customer', 'CustomerController');
 Route::resource('product', 'ProductController');
+Route::resource('service', 'ServiceController');
 Route::resource('invoice', 'InvoiceController');
 Route::put('invoice/update/{id}', 'InvoiceController@approve')->name("approve");
 Route::get('invoice/process/{id}', 'InvoiceController@process')->name("process");

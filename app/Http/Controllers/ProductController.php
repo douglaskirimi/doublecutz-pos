@@ -8,6 +8,7 @@ use App\ProductSupplier;
 use App\Supplier;
 use App\Tax;
 use App\Unit;
+use App\Service;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -21,7 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         // $products = Product::all();
-        $products = Services::all();
+        $products = Service::all();
         $additional = ProductSupplier::all();
       
         return view('product.index', compact('products','additional'));

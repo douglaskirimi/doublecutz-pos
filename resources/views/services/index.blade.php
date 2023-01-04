@@ -10,32 +10,18 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-th-list"></i> Customers List</h1>
-                <p>  
-                @if(session()->has('message'))
-            <div class="alert alert-success">
-                {{ session()->get('message') }}
-            </div>
-        @endif
-        </p>
+                <h1><i class="fa fa-th-list"></i> Services Table</h1>
+                <!-- <p>Table to display analytical data effectively</p>/ -->
             </div>
             <ul class="app-breadcrumb breadcrumb side">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item">Tables</li>
-                <li class="breadcrumb-item active"><a href="#">Customer Table</a></li>
+                <li class="breadcrumb-item">Services</li>
+                <li class="breadcrumb-item active"><a href="#">Manage Services</a></li>
             </ul>
         </div>
         <div class="">
-            <a class="btn btn-primary" href="{{route('customer.create')}}"><i class="fa fa-plus"> Add Customer</i></a>
+            <a class="btn btn-primary" href="{{route('service.create')}}"><i class="fa fa-plus"> Add Service</i></a>
         </div>
-
-
-        @if(session()->has('message'))
-            <div class="alert alert-success">
-                {{ session()->get('message') }}
-            </div>
-        @endif
-
 
         <div class="row mt-2">
             <div class="col-md-12">
@@ -44,31 +30,33 @@
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                             <tr>
-                                <th>Customer Name </th>
-                                <th>Address </th>
-                                <th>Mobile</th>
-                                <th>Details</th>
+                                <th>Service Name </th>
+                                <th>Service Category</th>
+                                <th>Service Fee</th>
+                                <!-- <th>Supplier Price</th> -->
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            @foreach( $customers as $customer)
-                            <tr>
-                                <td>{{ $customer->name }} </td>
-                                <td>{{ $customer->address }} </td>
-                                <td>{{ $customer->mobile }} </td>
-                                <td>{{ $customer->details }} </td>
-                                 <td>
-                                    <a class="" href="{{route('customer.edit', $customer->id)}}"><i class="fa fa-edit text-primary" ></i></a>
-                                    <a class="text-primary ml-3" type="submit" onclick="deleteTag({{ $customer->id }})" style="cursor:pointer;">
-                                        <i class="fa fa-trash-o text-danger"></i></a>
-                                    <form id="delete-form-{{ $customer->id }}" action="{{ route('customer.destroy',$customer->id) }}" method="POST" style="display: none;">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
+                             <tbody>
+                        
+                             @foreach($services as $service)
+                                 <tr>
+                                     <td>{{$service->service_name}}</td>
+                                     <td>{{$service->category_id}}</td>
+                                     <td>{{$service->service_fee}}</td>
+                                 
+                                     <td>
+                                         <a class="btn btn-primary" href="{{route('service.edit', $service->id)}}"><i class="fa fa-edit" ></i></a>
+                                         <button class="btn btn-danger waves-effect" type="submit" onclick="deleteTag({{ $service->id }})">
+                                             <i class="fa fa-trash-o"></i>
+                                         </button>
+                                         <form id="delete-form-{{ $service->id }}" action="{{ route('service.destroy',$service->id) }}" method="POST" style="display: none;">
+                                             @csrf
+                                             @method('DELETE')
+                                         </form>
+                                     </td>
+                                 </tr>
+                             @endforeach
                             </tbody>
                         </table>
                     </div>

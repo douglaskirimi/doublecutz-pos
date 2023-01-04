@@ -46,7 +46,7 @@
                             <tr>
                                 <th scope="col">Service Name</th>
                                 <th scope="col">Heads</th>
-                                <th scope="col">Price</th>
+                                <!-- <th scope="col">Price</th> -->
                                 <th scope="col">Discount</th>
                                 <th scope="col">Service Fee</th>
                                 <th scope="col"><a class="addRow"><i class="fa fa-plus"></i></a></th>
@@ -61,9 +61,9 @@
                                         @endforeach
                                     </select></td>
                                 <td><input type="number" name="qty[]" min="0" value="1" class="form-control qty" ></td>
-                                <td><input type="number" name="price[]" min="0" class="form-control price" ></td>
+                                <td><input type="hidden" name="price[]" min="0" class="form-control price" ></td>
                                 <td><input type="number" name="dis[]" min="0" value="0" class="form-control dis" ></td>
-                                <td><input type="text" name="amount[]" value="0"  class="form-control amount" readonly></td>
+                                <td><input type="text" name="amount[]" value="0"  class="form-control amount"></td>
                                 <td><a   class="btn btn-danger remove"> <i class="fa fa-remove"></i></a></td>
                              </tr>
                             </tbody>

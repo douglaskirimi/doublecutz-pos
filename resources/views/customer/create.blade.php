@@ -24,7 +24,7 @@
         @endif
 
         <div class="">
-            <a class="btn btn-primary" href="{{route('customer.index')}}"><i class="fa fa-edit"> Customer </i></a>
+            <a class="btn btn-primary" href="{{route('customer.index')}}"><i class="fa fa-edit"> Manage Customers </i></a>
         </div>
         <div class="row mt-2">
 
@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group col-md-8">
                                 <label class="control-label">Customer Mobile</label>
-                                <input name="mobile" class="form-control @error('mobile') is-invalid @enderror" type="text" placeholder="Enter Pone">
+                                <input name="mobile" class="form-control @error('mobile') is-invalid @enderror" type="text" placeholder="Enter Phone">
                                 @error('mobile')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
