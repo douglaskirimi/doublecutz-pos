@@ -20,8 +20,8 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::all();
-        $products = Service::all();
+        // $products = Product::all();
+        $products = Services::all();
         $additional = ProductSupplier::all();
       
         return view('product.index', compact('products','additional'));
