@@ -157,8 +157,8 @@ class ComposerStaticInitd916c76a0629c7c27f630e3b4e1df678
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -474,6 +474,7 @@ class ComposerStaticInitd916c76a0629c7c27f630e3b4e1df678
         'App\\Purchase' => __DIR__ . '/../..' . '/app/Purchase.php',
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
         'App\\Sale' => __DIR__ . '/../..' . '/app/Sale.php',
+        'App\\Services' => __DIR__ . '/../..' . '/app/Services.php',
         'App\\Supplier' => __DIR__ . '/../..' . '/app/Supplier.php',
         'App\\Tax' => __DIR__ . '/../..' . '/app/Tax.php',
         'App\\Unit' => __DIR__ . '/../..' . '/app/Unit.php',

@@ -21,6 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+        $products = Service::all();
         $additional = ProductSupplier::all();
       
         return view('product.index', compact('products','additional'));
@@ -59,8 +60,8 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = $request->name;
-        $product->serial_number = $request->serial_number;
-        $product->model = $request->model;
+        // $product->serial_number = $request->serial_number;
+        // $product->model = $request->model;
         $product->category_id = $request->category_id;
         $product->sales_price = $request->sales_price;
         $product->tax_id = $request->tax_id;
@@ -129,8 +130,8 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = $request->name;
-        $product->serial_number = $request->serial_number;
-        $product->model = $request->model;
+        // $product->serial_number = $request->serial_number;
+        // $product->model = $request->model;
         $product->category_id = $request->category_id;
         $product->sales_price = $request->sales_price;
         $product->tax_id = $request->tax_id;

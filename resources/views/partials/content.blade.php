@@ -13,33 +13,36 @@
         <div class="col-md-6 col-lg-3">
             <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
                 <div class="info">
-                    <h4>Customers</h4>
-                    <p><b>{{\App\Customer::count()??'0'}}</b></p>
+                    <h4>Services</h4>
+                    <p><b>{{\App\Product::count()??'0'}}</b></p>
                 </div>
             </div>
         </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
+                <div class="info">
+                    <h4>Categories</h4>
+                    <p><b>{{number_format(\App\Invoice::where('status','active')->where(DB::raw("(total-paid)"),'>','0')->count())}}</b></p>
+                </div>
+            </div>
+        </div>
+        
         <div class="col-md-6 col-lg-3">
             <div class="widget-small info coloured-icon"><i class="icon fa fa-money fa-3x"></i>
                 <div class="info">
-                    <h4>Payments</h4>
+                    <h4>Customers</h4>
+                    <p><b>{{\App\Customer::count()??'0'}}</b></p>
                   
-                    <p><b>Ksh {{number_format(\App\Payment::where('status','active')->where('reversed','no')->whereDate('created_at',\Carbon\Carbon::today())->sum('amount'))??'0'}}</b></p>
+                    <!-- <p><b>Ksh {{number_format(\App\Payment::where('status','active')->where('reversed','no')->whereDate('created_at',\Carbon\Carbon::today())->sum('amount'))??'0'}}</b></p> -->
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-3">
             <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
                 <div class="info">
-                    <h4>Invoices</h4>
+                    <h4>Sales</h4>
                     <p><b>Ksh {{number_format(\App\Invoice::whereDate('created_at',\Carbon\Carbon::today())->sum('total'))??'0'}}</b></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-            <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
-                <div class="info">
-                    <h4>Uncleared Invoices</h4>
-                    <p><b>{{number_format(\App\Invoice::where('status','active')->where(DB::raw("(total-paid)"),'>','0')->count())}}</b></p>
                 </div>
             </div>
         </div>

@@ -52,6 +52,7 @@ return array(
     'App\\Purchase' => $baseDir . '/app/Purchase.php',
     'App\\Role' => $baseDir . '/app/Role.php',
     'App\\Sale' => $baseDir . '/app/Sale.php',
+    'App\\Services' => $baseDir . '/app/Services.php',
     'App\\Supplier' => $baseDir . '/app/Supplier.php',
     'App\\Tax' => $baseDir . '/app/Tax.php',
     'App\\Unit' => $baseDir . '/app/Unit.php',
