@@ -5,7 +5,7 @@ RewriteCond %{REQUEST_URI} !^/public/
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ /public/$1 
-#RewriteRule ^ index.php [L]
+RewriteRule ^(/)?$ public/index.php [L]
 
 <IfModule mime_module>
   AddHandler application/x-httpd-ea-php80 .php .php8 .phtml
