@@ -7,13 +7,13 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-edit"></i>User</h1>
+                <h1><i class="fa fa-home"></i>Employee</h1>
                 <p></p>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item">Forms</li>
-                <li class="breadcrumb-item"><a href="#">User</a></li>
+                <li class="breadcrumb-item">Add </li>
+                <li class="breadcrumb-item"><a href="#">Employee</a></li>
             </ul>
         </div>
 
@@ -63,11 +63,11 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-8">
-                                <label class="control-label">Role </label>
+                                <label class="control-label">Employee Specialization </label>
                                 <select class="form-control" name="role_id" >
                                     <option>Select Specialization </option>
                                     @foreach($categories as $specialization)
-                                        <option value="{{$role->id}}">{{$category->category_name}}</option>
+                                        <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('details')

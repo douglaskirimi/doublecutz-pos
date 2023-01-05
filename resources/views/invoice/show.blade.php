@@ -7,12 +7,12 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-file-text-o"></i> Invoice</h1>
-                <p>A Printable Invoice Format</p>
+                <h1><i class="fa fa-file-text-o"></i> Double Cutz Spa and Kinyozi </h1>
+                <!-- <p>A Printable Invoice Format</p> -->
             </div>
             <ul class="app-breadcrumb breadcrumb">
-                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="#">Invoice</a></li>
+                <li class="breadcrumb-item"><i class=""></i></li>
+                <li class="breadcrumb-item"><i href="#">Double Cutz Spa & Kinyozi Receipt</i></li>
             </ul>
         </div>
         <div class="row">
@@ -21,7 +21,7 @@
                     <section class="invoice">
                         <div class="row mb-4">
                             <div class="col-6">
-                                <h2 class="page-header"><i class="fa fa-globe"></i> Surveyor POS</h2>
+                                <h2 class="page-header"><i class="fa fa-head"></i> Receipt</h2>
                             </div>
                             <div class="col-6">
                                 <h5 class="text-right">Date: {{$invoice->created_at->format('Y-m-d')}}</h5>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="row invoice-info">
                             <div class="col-4">From
-                                <address><strong>Surveyor POS.</strong><br>Tongi<br>Gazipur<br>Email: hello@saleserp.com</address>
+                                <address><strong>Double Cutz Spa and Kinyozi</strong><br>Email: admin@doublecutz.com</address>
                             </div>
                             <div class="col-4">To
                                  <address><strong>{{$invoice->customer->name}}</strong><br>{{$invoice->customer->address}}<br>Phone: {{$invoice->customer->mobile}}<br>Email: {{$invoice->customer->email}}</address>

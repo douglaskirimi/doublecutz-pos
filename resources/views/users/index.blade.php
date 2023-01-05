@@ -10,17 +10,17 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-th-list"></i> user Table</h1>
-                <p>Table to display analytical data effectively</p>
+                <h1><i class="fa fa-th-list"></i>Manage Employees</h1>
+                <!-- <p>Table to display analytical data effectively</p> -->
             </div>
             <ul class="app-breadcrumb breadcrumb side">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item">Tables</li>
-                <li class="breadcrumb-item active"><a href="#">user Table</a></li>
+                <li class="breadcrumb-item">Manage</li>
+                <li class="breadcrumb-item active"><a href="#">Employees</a></li>
             </ul>
         </div>
         <div class="">
-            <a class="btn btn-primary" href="{{route('user.create')}}"><i class="fa fa-plus"> Add user</i></a>
+            <a class="btn btn-primary" href="{{route('user.create')}}"><i class="fa fa-plus"> Add Employee</i></a>
         </div>
 
         <div class="row mt-2">

@@ -108,13 +108,14 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        // $additional =ProductSupplier::findOrFail($id);
+        $additional =ProductSupplier::findOrFail($id);
         $services =Service::findOrFail($id);
+        // dd($services);
         // $suppliers =Supplier::all();
         $categories = Category::all();
-        // $taxes = Tax::all();
+        $taxes = Tax::all();
     
-        return view('service.edit', compact('services','categories'));
+        return view('services.edit', compact('services','categories','taxes'));
     }
 
     /**
