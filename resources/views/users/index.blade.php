@@ -38,7 +38,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                          {{Auth::user()->usergroup_id}}
+                          <!-- {{Auth::user()->usergroup_id}} -->
                             @foreach( $users as $user)
                             <tr>
                                 <td>{{ $user->f_name }} </td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Product;
+use App\Service;
 use App\Sale;
 use App\Supplier;
 use App\Invoice;
@@ -57,7 +58,8 @@ class InvoiceController extends Controller
     {
         $customers = Customer::all();
         $products = Product::all();
-        return view('invoice.create', compact('customers', 'products'));
+        $services = Service::all();
+        return view('invoice.create', compact('customers', 'products','services'));
     }
 
     /**
