@@ -24,7 +24,7 @@
         @endif
 
         <div class="">
-            <a class="btn btn-primary" href="{{route('user.index')}}"><i class="fa fa-edit"> User </i></a>
+            <a class="btn btn-primary" href="{{route('user.index')}}"><i class="fa fa-edit"> Manage Employees </i></a>
         </div>
         <div class="row mt-2">
 
@@ -36,8 +36,8 @@
                         <form method="POST" action="{{route('user.store')}}">
                             @csrf
                             <div class="form-group col-md-8">
-                                <label class="control-label">First Name</label>
-                                <input name="f_name" class="form-control @error('f_name') is-invalid @enderror" type="text" placeholder="Enter Name">
+                                <label class="control-label">Full Name</label>
+                                <input name="f_name" class="form-control @error('f_name') is-invalid @enderror" type="text" placeholder="Full Name">
                                 @error('f_name')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -45,8 +45,8 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-8">
-                                <label class="control-label">Last Name</label>
-                                <input name="l_name" class="form-control @error('l_name') is-invalid @enderror" type="text" placeholder="Enter last name">
+                                <label class="control-label">Tel</label>
+                                <input name="tel" class="form-control @error('tel') is-invalid @enderror" type="text" placeholder="Tel/Mobile Number">
                                 @error('l_name')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="form-group col-md-8">
                                 <label class="control-label">Employee Specialization </label>
-                                <select class="form-control" name="role_id" >
+                                <select class="form-control" name="specialization" >
                                     <option>Select Specialization </option>
                                     @foreach($categories as $specialization)
                                         <option value="{{$specialization->id}}">{{$specialization->name}}</option>

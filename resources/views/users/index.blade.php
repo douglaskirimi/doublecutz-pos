@@ -33,18 +33,16 @@
                                 <th>First Name </th>
                                 <th>Last Name </th>
                                 <th>Email</th>
-                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                           <!-- {{Auth::user()->usergroup_id}} -->
-                            @foreach( $users as $user)
+                            @foreach($users as $user)
                             <tr>
                                 <td>{{ $user->f_name }} </td>
                                 <td>{{ $user->l_name }} </td>
                                 <td>{{ $user->email }} </td>
-                                <td>{{ $user->role->name }} </td>
                                  <td>
                                     <a class="btn btn-primary" href="{{route('user.edit', $user->id)}}"><i class="fa fa-edit" ></i></a>
                                     <button class="btn btn-danger waves-effect" type="submit" onclick="deleteTag({{ $user->id }})">
