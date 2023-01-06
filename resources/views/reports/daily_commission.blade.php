@@ -55,7 +55,7 @@
                                         <th>Total Amount</th>
                                      </tr>
                                        @foreach($commission->invoice->sale as $sale)        
-                                       <tr style="border: 1px solid lightseagreen!important;">
+                                       <tr style="border: c;">
                                         <td>{{$sale->product->name}}</td>
                                         <td>{{$sale->qty}}</td>
                                         <td>{{$sale->price}}</td>

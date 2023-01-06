@@ -57,7 +57,7 @@ class ServiceController extends Controller
         // dd($request);
 
          $request->validate([
-            'service_name' => 'required|min:3|unique:services|regex:/^[a-zA-Z ]+$/',
+            'service_name' => 'required|min:3|regex:/^[a-zA-Z ]+$/',
             'category_id' => 'required',
             'service_fee' => 'required',
             'commission_percentage' => 'required',
