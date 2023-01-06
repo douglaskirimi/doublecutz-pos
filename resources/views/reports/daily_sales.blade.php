@@ -24,7 +24,7 @@
                                 <h2 class="page-header"><i class="fa fa-head"></i> Receipt</h2>
                             </div>
                             <div class="col-6">
-                                <h5 class="text-right">Date: </h5>
+                                <h5 class="text-right">Date: {{ Date('Y/m/d')}} </h5>
                             </div>
                         </div>
                         <div class="row invoice-info">
