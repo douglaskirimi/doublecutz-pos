@@ -104,18 +104,18 @@ class ServiceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminssate\Http\Response
      */
     public function edit($id)
     {
-        $additional =ProductSupplier::findOrFail($id);
-        $services =Service::findOrFail($id);
+        // $additional =ProductSupplier::finsdOrFail($id);
+        $service =Service::findOrFail($id);
         // dd($services);
         // $suppliers =Supplier::all();
         $categories = Category::all();
         $taxes = Tax::all();
     
-        return view('services.edit', compact('services','categories','taxes'));
+        return view('services.edit', compact('service','categories','taxes'));
     }
 
     /**
@@ -128,35 +128,26 @@ class ServiceController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|min:3|unique:services|regex:/^[a-zA-Z ]+$/',
-            // 'serial_number' => 'required',
-            // 'model' => 'required|min:1',
-            'category_id' => 'required',
+            'service_name' => 'required|min:3|regex:/^[a-zA-Z ]+$/',
+            'category_name' => 'required',
             'service_fee' => 'required',
-            // 'tax_id' => 'required',
 
         ]);
 
 
         $service = new Service();
-        $service->service_name = $request->name;
-        // $product->serial_number = $request->serial_number;
-        // $product->model = $request->model;
-        $service->category_id = $request->category_id;
+        $service->service_name = $request->service_name;
+        $service->category_name = $request->category_name;
         $service->service_fee = $request->service_fee;
-        // $service->tax_id = $request->tax_id;
 
-
+        $service = Service::findOrFail($id);
+        $service->service_name = $request->service_name;
+        $service->category_name = $request->category_name;
+        $service->service_fee = $request->service_fee;
+     
         $service->save();
-
-        // foreach($request->supplier_id as $key => $supplier_id){
-        //     $supplier = new ProductSupplier();
-        //     $supplier->product_id = $product->id;
-        //     $supplier->supplier_id = $request->supplier_id[$key];
-        //     $supplier->price = $request->supplier_price[$key];
-        //     $supplier->save();
-        // }
-        return redirect()->back()->with('message', 'Service Created Successfully');
+        $services = Service::all();
+        return view('services.index', compact('services'))->with('message', 'Service Updated Successfully');
     }
 
     /**

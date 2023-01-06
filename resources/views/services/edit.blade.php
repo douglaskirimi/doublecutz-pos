@@ -33,25 +33,14 @@
                 <div class="tile">
                     <h3 class="tile-title">Service Update</h3>
                     <div class="tile-body">
-                        @foreach($services as $service)
-                        <form method="POST" action="" enctype="multipart/form-data">
-                          @endforeach
+                        <form method="POST" action="{{route('service.update', $service->id)}}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                              <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Service Name</label>
-                                    <input name="name" class="form-control @error('name') is-invalid @enderror" type="text" placeholder="Product Name">
-                                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Serial Number</label>
-                                    <input name="serial_number" class="form-control @error('serial_number') is-invalid @enderror" type="number" placeholder="Enter Serial Name">
-                                    @error('serial_number')
+                                    <input name="service_name" value="{{ $service->service_name }}" class="form-control @error('name') is-invalid @enderror" type="text" placeholder="Product Name">
+                                    @error('service_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -59,8 +48,8 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">Model</label>
-                                    <input name="model" class="form-control @error('name') is-invalid @enderror" type="text" placeholder="Enter Model Name">
+                                    <label class="control-label">Service Fee</label>
+                                    <input type="text" name="service_fee" value=" {{$service->service_fee}}" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Service Fee">
                                     @error('model')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -70,62 +59,30 @@
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Category</label>
 
-                                    <select name="category_id" class="form-control">
-                                        <option>---Select Category---</option>
+                                    <select name="category_name" class="form-control">
+                                        <option value="{{ $service->category_name }}">{{ $service->category_name }}</option>
                                         @foreach($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            <option value="{{ $category->name }}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
 
-                                    @error('category_id')
+                                    @error('category_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                </div>
-                                
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Sale Price</label>
-                                    <input name="sales_price" class="form-control @error('sales_price') is-invalid @enderror" type="number" placeholder="Enter Sales Price">
-                                    @error('sales_price')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Discount </label>
-                                    <select name="tax_id" class="form-control">
-                                        <option>---Select Discount---</option>
-                                        @foreach($taxes as $tax)
-                                            <option value="{{$tax->id}}">{{$tax->name}} %</option>
-                                        @endforeach
-                                    </select>
-                                    @error('tax_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div> 
+                                </div>                                
+             
                             </div>
 
-                            <div class="tile ">
+  <!--                           <div class="tile ">
                                 <div class="row field_wrapper">
-                    
-                                    <div class="form-group col-md-4">
-                                        <input value="{{$services->service_fee}}"  name="service_fee[]" class="form-control @error('supplier_price') is-invalid @enderror" type="number" placeholder="Enter Sales Price">
-                                        @error('supplier_price')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
                                     <div class="form-group col-md-4">
                                         <a href="javascript:void(0);" class="add_button btn btn-primary" title="Add field"><i class="fa fa-plus"></i></a>
                                         <a href="javascript:void(0);" class="remove_button btn btn-danger" title="Delete field"><i class="fa fa-minus"></i></a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group col-md-4 align-self-end">
                                 <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update</button>
                             </div>

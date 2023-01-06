@@ -1,5 +1,3 @@
-
-
 @extends('layouts.master')
 
 @section('titel', 'Customer | ')
