@@ -21,10 +21,10 @@
                     <section class="invoice">
                         <div class="row mb-4">
                             <div class="col-6">
-                                <h2 class="page-header"><i class="fa fa-head"></i> Receipt</h2>
+                                <h2 class="page-header text-info"><i class="fa fa-head text-info"></i> Daily Sales</h2>
                             </div>
                             <div class="col-6">
-                                <h5 class="text-right">Date: {{ Date('Y/m/d')}} </h5>
+                                <h5 class="text-right text-muted">Date: {{ Date('Y/m/d')}} </h5>
                             </div>
                         </div>
                         <div class="row invoice-info">
