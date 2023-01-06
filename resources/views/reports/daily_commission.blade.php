@@ -21,10 +21,10 @@
                     <section class="invoice">
                         <div class="row mb-4">
                             <div class="col-6">
-                                <h2 class="page-header"><i class="fa fa-head"></i> Receipt</h2>
+                                <h2 class="page-header"><i class="fa fa-head"></i> Commission Report</h2>
                             </div>
                             <div class="col-6">
-                                <h5 class="text-right">Date: </h5>
+                                <h5 class="text-right">Date: {{ Date('Y/m/d')}} </h5>
                             </div>
                         </div>
                         <div class="row invoice-info">
@@ -44,9 +44,9 @@
                                         {{$total=0}}
                                     </div>
                                     @foreach($daily_commission as $commission)
-                                    <tr>
-                                        <td>{{$commission->employee->f_name }} {{$commission->employee->l_name }}</td>
-                                        <td>{{$commission->invoice_id}}</td>
+                                    <tr style="border-collapse:collapse;" class="bg-info">
+                                        <td colspan="2">{{$commission->employee->f_name }} {{$commission->employee->l_name }}</td>
+                                        <td colspan="2">{{$commission->invoice_id}}</td>
                                        </tr>
                                        <tr style="border: 1px solid lightseagreen!important;">
                                         <th>Service</th>
@@ -55,16 +55,17 @@
                                         <th>Total Amount</th>
                                      </tr>
                                        @foreach($commission->invoice->sale as $sale)        
-                                       <tr style="border: c;">
+                                       <tr>
                                         <td>{{$sale->product->name}}</td>
                                         <td>{{$sale->qty}}</td>
-                                        <td>{{$sale->price}}</td>
-                                        <td>{{$sale->amount}}</td>
+                                        <td>{{number_format($sale->price,2)}}</td>
+                                        <td>{{number_format($sale->amount,2)}}</td>
                                      </tr>
 
                                        @endforeach
                                        <tr> 
-                                        <td>{{$commission->commission}}</td>
+                                        <td class="text-right" colspan="2">Total Commission</td>
+                                        <td class="text-right" colspan="2">{{number_format($commission->commission,2)}}</td>
                                         <div style="display: none">
                                             {{$total +=$commission->commission}}
                                         </div>
@@ -72,11 +73,11 @@
                                     @endforeach
                                     </tbody>
                                     <tfoot>
-                                    <tr>
+                                    <tr style="font-size: 40px;">
                                         <td></td>
                                         <td></td>
                                         <td><b>Total</b></td>
-                                        <td><b class="total">{{$total}}</b></td>
+                                        <td><b class="total">{{number_format($total,2)}}</b></td>
                                     </tr>
                                     </tfoot>
                                 </table>
