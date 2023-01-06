@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->string('sales_price');
             $table->string('status')->default('active');
+            $table->integer('commission_percentage');
             $table->string('tax_id');
             $table->timestamps();
         });

@@ -31,24 +31,26 @@
                                 <th>Service Name </th>
                                 <th>Service Category</th>
                                 <th>Service Fee</th>
+                                <th>Commission in %</th>
                                 <!-- <th>Supplier Price</th> -->
                                 <th>Action</th>
                             </tr>
                             </thead>
                              <tbody>
                         
-                             @foreach($services as $service)
+                             @foreach($products as $product)
                                  <tr>
-                                     <td>{{$service->service_name}}</td>
-                                     <td>{{$service->category_name}}</td>
-                                     <td>{{$service->service_fee}}</td>
+                                     <td>{{$product->name}}</td>
+                                     <td>{{$product->id}}</td>
+                                     <td>{{$product->sales_price}}</td>
+                                     <td>{{$product->commission_percentage}}</td>
                                  
                                      <td>
-                                         <a class="btn btn-primary" href="{{route('service.edit', $service->id)}}"><i class="fa fa-edit" ></i></a>
-                                         <button class="btn btn-danger waves-effect" type="submit" onclick="deleteTag({{ $service->id }})">
+                                         <a class="btn btn-primary" href="{{route('service.edit', $product->id)}}"><i class="fa fa-edit" ></i></a>
+                                         <button class="btn btn-danger waves-effect" type="submit" onclick="deleteTag({{ $product->id }})">
                                              <i class="fa fa-trash-o"></i>
                                          </button>
-                                         <form id="delete-form-{{ $service->id }}" action="{{ route('service.destroy',$service->id) }}" method="POST" style="display: none;">
+                                         <form id="delete-form-{{ $product->id }}" action="{{ route('service.destroy',$product->id) }}" method="POST" style="display: none;">
                                              @csrf
                                              @method('DELETE')
                                          </form>

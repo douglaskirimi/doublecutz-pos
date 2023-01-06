@@ -40,3 +40,7 @@ Route::get('/invoices', 'InvoiceController@invoices')->name('invoices');
 Route::get('/paymentGraph', 'ReceiptController@paymentGraph')->name('payment');
 Route::get('/paymentPie', 'ReceiptController@paymentPie')->name('payment');
 Route::resource('user', 'UsersController');
+
+Route::get('/reports/daily-sales','ReportsController@daily_sales')->name('daily_sales');
+
+Route::get('/reports/daily-commission','ReportsController@daily_commission')->name('daily_commission');

@@ -31,6 +31,7 @@ return array(
     'App\\Http\\Controllers\\TaxController' => $baseDir . '/app/Http/Controllers/TaxController.php',
     'App\\Http\\Controllers\\UnitController' => $baseDir . '/app/Http/Controllers/UnitController.php',
     'App\\Http\\Controllers\\UsersController' => $baseDir . '/app/Http/Controllers/UsersController.php',
+    'App\\Http\\Controllers\\payments\\mpesa\\MpesaTransactionsController' => $baseDir . '/app/Http/Controllers/payments/mpesa/MpesaTransactionsController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',

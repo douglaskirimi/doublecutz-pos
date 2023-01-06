@@ -8,6 +8,7 @@ use App\Service;
 use App\Sale;
 use App\Supplier;
 use App\Invoice;
+use App\SalesCommission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -92,6 +93,7 @@ class InvoiceController extends Controller
         $invoice->process = 'pending';
         $invoice->save();
         $amount = 0;
+        $commission = 0;
         foreach ($request->product_id as $key => $product_id) {
             $sale = new Sale();
             $sale->qty = $request->qty[$key];
@@ -101,8 +103,18 @@ class InvoiceController extends Controller
             $sale->product_id = $request->product_id[$key];
             $sale->invoice_id = $invoice->id;
             $sale->save();
-            $amount += $request->amount[$key];;
+            $product = Product::find($product_id);
+            $amount += $request->amount[$key];
+            $commission += $product->commission_percentage*$amount/100; 
         }
+
+        // dd($commission);
+        $sc = new SalesCommission;        
+        $sc->commission = $commission;  
+        $sc->employee_id = auth()->user()->id;  
+        $sc->invoice_id = $invoice->id;
+        $sc->save();
+
         $invoice->id =  $invoice->id;
         $invoice->total = $amount;
         if ($invoice->update()) {

@@ -76,10 +76,10 @@
  -->                                <div class="form-group col-md-6">
                                     <label class="control-label">Category</label>
 
-                                    <select name="category_name" class="form-control">
+                                    <select name="category_id" class="form-control">
                                         <option>---Select Category---</option>
                                         @foreach($categories as $category)
-                                            <option value="{{$category->name}}">{{$category->name}}</option>
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
 
@@ -101,10 +101,10 @@
                                 </div>
                                 <!-- 
                                  -->
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Discount </label>
+   <!--                              <div class="form-group col-md-6">
+                                    <label class="control-label">Commission </label>
                                     <select name="tax_id" class="form-control">
-                                        <option>---Select Discount---</option>
+                                        <option>---Select Commission---</option>
                                         @foreach($taxes as $tax)
                                             <option value="{{$tax->id}}">{{$tax->name}} %</option>
                                         @endforeach
@@ -114,10 +114,20 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+                                </div>  -->
+
+                            <div class="form-group col-md-6">
+                             <label class="control-label">Commission </label>
+                              <input name="commission_percentage" class="form-control @error('commission') is-invalid @enderror" type="number" placeholder="Enter Commission in %">
+                                    @error('commission')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div> 
                             </div>
 
-                            <div class="tile">
+                 <!--            <div class="tile">
 
                                 <div id="example-2" class="content">
                                     <div class="group row">
@@ -135,7 +145,7 @@
                                         </div>
                                     </div>
                                 </div>
-                             </div>
+                             </div> -->
                             <div class="form-group col-md-4 align-self-end">
                                 <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save</button>
                             </div>

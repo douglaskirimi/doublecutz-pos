@@ -21,12 +21,12 @@ class ServiceController extends Controller
 
     public function index()
     {
-        // $products = Product::all();
+        $products = Product::all();
         $services = Service::all();
         // dd($services);
         // $additional = ProductSupplier::all();
       
-        return view('services.index', compact('services'));
+        return view('services.index', compact('products'));
     }
 
     /**
@@ -58,23 +58,29 @@ class ServiceController extends Controller
 
          $request->validate([
             'service_name' => 'required|min:3|unique:services|regex:/^[a-zA-Z ]+$/',
-            'category_name' => 'required',
+            'category_id' => 'required',
             'service_fee' => 'required',
+            'commission_percentage' => 'required',
             
         ]);
 
 
-        $service = new Service();
-        $service->service_name = $request->service_name;
-        $service->category_name = $request->category_name;
-        $service->service_fee = $request->service_fee;
-        // $product->serial_number = $request->serial_number;
+        // $service = new Service();
+        // $service->service_name = $request->service_name;
+        // $service->category_name = $request->category_name;
+        // $service->service_fee = $request->service_fee;
+
+         $product = new Product();
+        $product->name = $request->service_name;
+        $product->category_id = $request->category_id;
+        $product->sales_price = $request->service_fee;
+        $product->commission_percentage = $request->commission_percentage;
         // $product->model = $request->model;
-        // $product->tax_id = $request->tax_id;
+        $product->tax_id = 0;
 
 
 
-        $service->save();
+        $product->save();
 
         // foreach($request->supplier_id as $key => $supplier_id){
         //     $supplier = new ProductSupplier();
@@ -83,10 +89,10 @@ class ServiceController extends Controller
         //     $supplier->price = $request->supplier_price[$key];
         //     $supplier->save();
         // }
-        // return redirect()->back()->with('message', 'Service Created Successfully');
+        return redirect()->back()->with('message', 'Service Created Successfully');
 
-        $services = Service::all();
-        return view('services.index', compact('services'));
+        // $services = Product::all();
+        // return view('services.index', compact('services'));
     }
 
     /**

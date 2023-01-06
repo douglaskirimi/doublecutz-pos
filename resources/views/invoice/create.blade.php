@@ -7,13 +7,13 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-edit"></i> Form</h1>
+                <h1><i class="fa fa-money"></i>Make Sales</h1>
                 <p></p>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item">Forms</li>
-                <li class="breadcrumb-item"><a href="#">Sample Forms</a></li>
+                <li class="breadcrumb-item">Sales</li>
+                <li class="breadcrumb-item"><a href="#">Manage Sales</a></li>
             </ul>
         </div>
 
@@ -22,7 +22,7 @@
              <div class="clearix"></div>
             <div class="col-md-12">
                 <div class="tile">
-                    <h3 class="tile-title">Invoice</h3>
+                    <h3 class="tile-title">Create Invoice</h3>
                     <div class="tile-body">
                         <form  method="POST" action="{{route('invoice.store')}}">
                             @csrf
@@ -46,9 +46,9 @@
                             <tr>
                                 <th scope="col">Service Name</th>
                                 <th scope="col">Heads</th>
-                                <th scope="col">Price</th>
+                                <th scope="col">Unit Price</th>
                                 <th scope="col">Discount</th>
-                                <th scope="col">Service Fee</th>
+                                <th scope="col">Total Price</th>
                                 <th scope="col"><a class="addRow"><i class="fa fa-plus"></i></a></th>
                             </tr>
                             </thead>
@@ -61,7 +61,7 @@
                                         @endforeach
                                     </select></td>
                                 <td><input type="number" name="qty[]" min="0" value="1" class="form-control qty" ></td>
-                                <td><input type="hidden" name="price[]" min="0" class="form-control price" ></td>
+                                <td><input type="number" name="price[]" min="0" class="form-control price" ></td>
                                 <td><input type="number" name="dis[]" min="0" value="0" class="form-control dis" ></td>
                                 <td><input type="text" name="amount[]" value="0"  class="form-control amount"></td>
                                 <td><a   class="btn btn-danger remove"> <i class="fa fa-remove"></i></a></td>

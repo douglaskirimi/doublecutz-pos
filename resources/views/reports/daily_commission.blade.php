@@ -24,41 +24,49 @@
                                 <h2 class="page-header"><i class="fa fa-head"></i> Receipt</h2>
                             </div>
                             <div class="col-6">
-                                <h5 class="text-right">Date: {{$invoice->created_at->format('Y-m-d')}}</h5>
+                                <h5 class="text-right">Date: </h5>
                             </div>
                         </div>
                         <div class="row invoice-info">
                             <div class="col-4">From
                                 <address><strong>Double Cutz Spa and Kinyozi</strong><br>Email: admin@doublecutz.com</address>
                             </div>
-                            <div class="col-4">To
-                                 <address><strong>{{$invoice->customer->name}}</strong><br>{{$invoice->customer->address}}<br>Phone: {{$invoice->customer->mobile}}<br>Email: {{$invoice->customer->email}}</address>
-                             </div>
-                            <div class="col-4"><b>Invoice #{{1000+$invoice->id}}</b><br><!--<br><b>Order ID:</b> 4F3S8J<br>--><b>Payment Due:</b> {{$invoice->created_at->format('Y-m-d')}}<br><!--<b>Account:</b> 968-34567--></div>
+                       
                         </div>
                         <div class="row">
                             <div class="col-12 table-responsive">
-                                <table class="table table-striped">
+                                <table class="table">
                                     <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Qty</th>
-                                        <th>Price</th>
-                                        <th>Amount</th>
-                                     </tr>
+                                    
                                     </thead>
                                     <tbody>
                                     <div style="display: none">
                                         {{$total=0}}
                                     </div>
-                                    @foreach($sales as $sale)
+                                    @foreach($daily_commission as $commission)
                                     <tr>
+                                        <td>{{$commission->employee->f_name }} {{$commission->employee->l_name }}</td>
+                                        <td>{{$commission->invoice_id}}</td>
+                                       </tr>
+                                       <tr style="border: 1px solid lightseagreen!important;">
+                                        <th>Service</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total Amount</th>
+                                     </tr>
+                                       @foreach($commission->invoice->sale as $sale)        
+                                       <tr style="border: 1px solid lightseagreen!important;">
                                         <td>{{$sale->product->name}}</td>
                                         <td>{{$sale->qty}}</td>
                                         <td>{{$sale->price}}</td>
                                         <td>{{$sale->amount}}</td>
+                                     </tr>
+
+                                       @endforeach
+                                       <tr> 
+                                        <td>{{$commission->commission}}</td>
                                         <div style="display: none">
-                                            {{$total +=$sale->amount}}
+                                            {{$total +=$commission->commission}}
                                         </div>
                                      </tr>
                                     @endforeach
