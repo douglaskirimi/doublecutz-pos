@@ -115,13 +115,14 @@ class ServiceController extends Controller
     public function edit($id)
     {
         // $additional =ProductSupplier::finsdOrFail($id);
-        $service =Service::findOrFail($id);
-        // dd($services);
+        $ca =Product::findOrFail($id)->with('category')->get();
+        $service =Product::findOrFail($id);
+        // die($service);
         // $suppliers =Supplier::all();
         $categories = Category::all();
         $taxes = Tax::all();
     
-        return view('services.edit', compact('service','categories','taxes'));
+        return view('services.edit', compact('service','categories','taxes','ca'));
     }
 
     /**
@@ -135,25 +136,24 @@ class ServiceController extends Controller
     {
         $request->validate([
             'service_name' => 'required|min:3|regex:/^[a-zA-Z ]+$/',
-            'category_name' => 'required',
-            'service_fee' => 'required',
+            'category_id' => 'required',
+            'sales_price' => 'required',
+            'category_id' => 'required',
+            'commission_percentage' => 'required',
 
         ]);
 
 
-        $service = new Service();
-        $service->service_name = $request->service_name;
-        $service->category_name = $request->category_name;
-        $service->service_fee = $request->service_fee;
-
-        $service = Service::findOrFail($id);
-        $service->service_name = $request->service_name;
-        $service->category_name = $request->category_name;
-        $service->service_fee = $request->service_fee;
-     
+        $service = Product::findOrFail($id);
+        $service->name = $request->service_name;
+        $service->category_id = $request->category_id;
+        $service->sales_price = $request->sales_price;
+        $service->commission_percentage = $request->commission_percentage;
+        $service->tax_id = 0;
         $service->save();
-        $services = Service::all();
-        return view('services.index', compact('services'))->with('message', 'Service Updated Successfully');
+
+        return redirect()->back()->with('message', 'Service Updated Successfully');
+        // return view('services.index', compact('services'))->with('message', 'Service Updated Successfully');
     }
 
     /**
@@ -164,7 +164,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        $service = Service::find($id);
+        $service = Product::find($id);
         $service->delete();
         return redirect()->back();
 

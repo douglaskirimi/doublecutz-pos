@@ -61,13 +61,13 @@
                             </div>
                             <div class="form-group col-md-8">
                                 <label class="control-label">Role </label>
-                                <select class="form-control">
+                                <select class="form-control" name="role_id">
                                     <option>Select Role </option>
                                     @foreach($roles as $role)
                                         <option value="{{$role->id}}" {{($user->role->id==$role->id)?'selected':''}}>{{$role->name}}</option>
                                     @endforeach
                                 </select>
-                                @error('details')
+                                @error('role_id')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

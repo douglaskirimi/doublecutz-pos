@@ -39,8 +39,8 @@
                              <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Service Name</label>
-                                    <input name="service_name" value="{{ $service->service_name }}" class="form-control @error('name') is-invalid @enderror" type="text" placeholder="Product Name">
-                                    @error('service_name')
+                                    <input name="service_name" value="{{ $service->name }}" class="form-control @error('name') is-invalid @enderror" type="text" placeholder="Product Name">
+                                    @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -49,7 +49,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Service Fee</label>
-                                    <input type="text" name="service_fee" value=" {{$service->service_fee}}" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Service Fee">
+                                    <input type="text" name="sales_price" value=" {{$service->sales_price}}" class="form-control @error('sales_price') is-invalid @enderror" placeholder="Enter Service Fee">
                                     @error('model')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -58,12 +58,10 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Category</label>
-
-                                    <select name="category_name" class="form-control">
-                                        <option value="{{ $service->category_name }}">{{ $service->category_name }}</option>
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->name }}">{{$category->name}}</option>
-                                        @endforeach
+                                    <select name="category_id" class="form-control">
+                                    @foreach($ca as $cac)
+                                     <option value="{{ $service->category->id }}">{{ $cac->category->name }}</option>
+                                    @endforeach
                                     </select>
 
                                     @error('category_name')
@@ -71,7 +69,17 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                </div>                                
+                                </div>  
+
+                                <div class="form-group col-md-6">
+                                    <label class="control-label">Commission Percentage</label>
+                                    <input name="commission_percentage" value="{{ $service->commission_percentage }}" class="form-control @error('name') is-invalid @enderror" type="text" placeholder="commission_percentage">
+                                    @error('commission_percentage')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>                              
              
                             </div>
 

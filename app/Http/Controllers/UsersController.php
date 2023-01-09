@@ -30,6 +30,7 @@ class UsersController extends Controller
      */
     public function create()
     {
+
         $roles=Role::all();
         $categories=Category::all();
         return view('users.create',compact('roles','categories'));
@@ -43,27 +44,29 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        ///return response()->json($request);
         $request->validate([
             'f_name' => 'required|min:3|unique:users|regex:/^[a-zA-Z ]+$/',
             'l_name' => 'required',
             'email' => 'required',
             'role_id' => 'required',
-            'usergroup_id' => 'required',
+            // 'usergroup_id' => 'required',
+            'password' => 'required|min:6',
             
         ]);
-  
 
-        $user = new user();
+        $user = new User();
         $user->f_name = $request->f_name;
         $user->l_name = $request->l_name;
         $user->image="";
         $user->email = $request->email;
         $user->role_id = $request->role_id;
-        $user->usergroup_id = $request->usergroup_id;
-        $user->password=bcrypt("password");
+        // $user->usergroup_id = $request->usergroup_id;
+        // dd($request->password);
+        $user->password=bcrypt($request->password);
+        $user->save();
+
  
-       if( $user->save())
+       // if( $user->save())
             return redirect()->back()->with('message', 'User Created Successfully');
     }
 
@@ -86,6 +89,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
+        // dd($id);
         $roles=Role::all();
         $user = User::with('role')->findOrFail($id);
         return view('users.edit', compact('user','roles'));
@@ -100,20 +104,22 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
         $request->validate([
-            'name' => 'required|min:3|regex:/^[a-zA-Z ]+$/',
-            'address' => 'required|min:3',
-            'mobile' => 'required|min:3|digits:10',
-            'details' => 'required|min:3|',
-            'previous_balance' => 'min:3',
+            'f_name' => 'required|min:3|regex:/^[a-zA-Z ]+$/',
+            'l_name' => 'required|min:3|regex:/^[a-zA-Z ]+$/',
+            'email' => 'required|email',
+            'role_id' => 'required',
         ]);
 
         $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->address = $request->address;
-        $user->mobile = $request->mobile;
-        $user->details = $request->details;
-     
+        $user->f_name = $request->f_name;
+        $user->l_name = $request->l_name;
+        $user->email = $request->email;
+        // $user->mobile = $request->mobile;
+        $user->role_id = $request->role_id;
+        // $user->usergroup_id = 1;
+
         $user->save();
 
         return redirect()->back()->with('message', 'User Updated Successfully');

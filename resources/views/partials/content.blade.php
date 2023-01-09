@@ -41,7 +41,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="widget-small warning coloured-icon"><i class="icon fa fa-money fa-3x"></i>
                 <div class="info">
-                    <h4>Sales</h4>
+                    <h4>Daily Sales</h4>
                     <p><b>Ksh {{number_format(\App\Invoice::whereDate('created_at',\Carbon\Carbon::today())->sum('total'))??'0'}}</b></p>
                 </div>
             </div>

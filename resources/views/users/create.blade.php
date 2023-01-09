@@ -37,22 +37,23 @@
                             @csrf
                             <div class="form-group col-md-8">
                                 <label class="control-label">Full Name</label>
-                                <input name="f_name" class="form-control @error('f_name') is-invalid @enderror" type="text" placeholder="Full Name">
+                                <input name="f_name" class="form-control @error('f_name') is-invalid @enderror" type="text" placeholder="First Name">
                                 @error('f_name')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-8">
-                                <label class="control-label">Tel</label>
-                                <input name="tel" class="form-control @error('tel') is-invalid @enderror" type="text" placeholder="Tel/Mobile Number">
+                                <div class="form-group col-md-8">
+                                <label class="control-label">Second Name</label>
+                                <input name="l_name" class="form-control @error('l_name') is-invalid @enderror" type="text" placeholder="Second Name">
                                 @error('l_name')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
+                    
                             <div class="form-group col-md-8">
                                 <label class="control-label">Email Address</label>
                                 <input name="email" class="form-control @error('email') is-invalid @enderror" type="text" placeholder="Enter email">
@@ -62,24 +63,11 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-8">
-                                <label class="control-label">Employee Specialization </label>
-                                <select class="form-control" name="specialization" >
-                                    <option>Select Specialization </option>
-                                    @foreach($categories as $specialization)
-                                        <option value="{{$specialization->id}}">{{$specialization->name}}</option>
-                                    @endforeach
-                                </select>
-                                @error('details')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+
                             <div class="form-group col-md-8">
                                 <label class="control-label">Role </label>
                                
-                                <select class="form-control" name="usergroup_id">
+                                <select class="form-control" name="role_id">
                                     <option>Select Role </option>
                                     @foreach($roles as $role)
                                         <option value="{{$role->id}}">{{$role->name}}</option>
@@ -91,16 +79,16 @@
                                     </span>
                                 @enderror
                             </div>
-                            <!-- <div class="form-group col-md-8">
-                                <label class="control-label">Previous Credit Balance</label>
-                                <input name="previous_balance" class="form-control @error('previous_balance') is-invalid @enderror" type="text" placeholder="Enter Unit Name">
-                                @error('previous_balance')
+
+                        <div class="form-group col-md-8">
+                                <label class="control-label">Password</label>
+                                <input name="password" class="form-control @error('password') is-invalid @enderror" type="password" placeholder="Enter Password">
+                                @error('password')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div> -->
-
+                            </div>
 
                             <div class="form-group col-md-4 align-self-end">
                                 <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Create</button>
