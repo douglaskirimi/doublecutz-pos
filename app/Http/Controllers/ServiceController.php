@@ -21,9 +21,11 @@ class ServiceController extends Controller
 
     public function index()
     {
-        $products = Product::all();
+        $products = Product::where('status', "active")->with('category')->get();
         $services = Service::all();
-        // dd($services);
+        // $p = Product::where('status', "active")->with('category')->get();
+        // die(json_encode($p));
+        // die($p);
         // $additional = ProductSupplier::all();
       
         return view('services.index', compact('products'));
@@ -120,6 +122,7 @@ class ServiceController extends Controller
         // die($service);
         // $suppliers =Supplier::all();
         $categories = Category::all();
+        // dd($categories);
         $taxes = Tax::all();
     
         return view('services.edit', compact('service','categories','taxes','ca'));
@@ -138,7 +141,7 @@ class ServiceController extends Controller
             'service_name' => 'required|min:3|regex:/^[a-zA-Z ]+$/',
             'category_id' => 'required',
             'sales_price' => 'required',
-            'category_id' => 'required',
+            // 'category_id' => 'required',
             'commission_percentage' => 'required',
 
         ]);

@@ -41,7 +41,7 @@
                              @foreach($products as $product)
                                  <tr>
                                      <td>{{$product->name}}</td>
-                                     <td>{{$product->id}}</td>
+                                     <td>{{$product->category->name}}</td>
                                      <td>{{$product->sales_price}}</td>
                                      <td>{{$product->commission_percentage}}</td>
                                  
