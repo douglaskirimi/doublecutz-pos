@@ -82,8 +82,12 @@
 
                             <div >
                                 <button class="btn btn-primary" type="submit">Submit</button>
+                       {{--      <form action="{{route('invoice.confirm')}}" method="POST">
+                                <button class="btn btn-warning" type="submit">Send STK</button>
+                            </form> --}}
                             </div>
                      </form>
+
                     </div>
                 </div>
 

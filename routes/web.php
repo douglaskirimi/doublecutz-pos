@@ -44,3 +44,7 @@ Route::resource('user', 'UsersController');
 Route::get('/reports/daily-sales','ReportsController@daily_sales')->name('daily_sales');
 
 Route::get('/reports/daily-commission','ReportsController@daily_commission')->name('daily_commission');
+
+Route::get('/payment-complete',function() {
+	return view('invoice.processing_payment')->name('payment.complete');
+});

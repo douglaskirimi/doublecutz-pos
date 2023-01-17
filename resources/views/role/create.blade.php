@@ -7,13 +7,13 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-edit"></i>role</h1>
+            <h1><i class=""></i>Roles</h1>
             <p></p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item">Forms</li>
-            <li class="breadcrumb-item"><a href="#">role</a></li>
+            <li class="breadcrumb-item">Manage Roles</li>
+            {{-- <li class="breadcrumb-item"><a href="#">Roles</a></li> --}}
         </ul>
     </div>
 
@@ -24,14 +24,14 @@
     @endif
 
     <div class="">
-        <a class="btn btn-primary" href="{{route('role.index')}}"><i class="fa fa-edit"> role </i></a>
+        <a class="btn btn-primary" href="{{route('role.index')}}"><i class="fa fa-group"> Manage Roles </i></a>
     </div>
     <div class="row mt-2">
 
         <div class="clearix"></div>
         <div class="col-md-10">
             <div class="tile">
-                <h3 class="tile-title">role</h3>
+                <h3 class="tile-title">Roles</h3>
                 <div class="tile-body">
                     <form method="POST" action="{{route('role.store')}}">
                         @csrf

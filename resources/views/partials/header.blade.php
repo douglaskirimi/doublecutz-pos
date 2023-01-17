@@ -1,5 +1,13 @@
-<header class="app-header"><a class="app-header__logo" href="index.html">Double Cutz Spa</a>
+<header class="app-header">
+    <a class="app-header__logo" href="index.html">Double Cutz Spa</a>
     <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+
+
+@if(Auth::user()->role_id==2)
+  <a class="app-nav__item bg-info" href="#" data-toggle="" aria-label="">Commission:  500</a>
+@endif
+
+
     <!-- Navbar Right Menu-->
     <ul class="app-nav">
 

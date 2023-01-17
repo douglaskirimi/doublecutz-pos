@@ -21,7 +21,7 @@
                     <section class="invoice">
                         <div class="row mb-4">
                             <div class="col-6">
-                                <h2 class="page-header"><i class="fa fa-head"></i> Receipt</h2>
+                                <h2 class="page-header"><i class="fa fa-head"></i> Payment Processing</h2>
                             </div>
                             <div class="col-6">
                                 <h5 class="text-right">Date: {{$invoice->created_at->format('Y-m-d')}}</h5>
@@ -78,19 +78,12 @@
                         <div class="row d-print-none mt-2">
 
                             <div class="col-12 text-right">
-                                <form action="{{ route('stkPush') }}" method="post">
-
-                                    <input type="hidden" name="payment_number" value="{{$invoice->customer->mobile}}" required>
-
-                                    <input type="hidden" name="amount" value="{{ $total}}" required>
+                          <!--       <form action="{{ route('stkPush') }}" method="post">
 
                                 <button class="btn btn-success"><i class="fa fa-share"></i> Pay Via Mpesa</button>
-
-                                    <a class="btn btn-secondary" href="javascript:window.print();"><i class="fa fa-print"></i> Print</a>
                                 </form>
-
-                                {{-- <a class="btn btn-warning" href="javascript:window.print();"><i class="fa fa-print"></i>Send STK</a> --}}
-                             
+ -->
+                                <a class="btn btn-primary" href="javascript:window.print();"><i class="fa fa-print"></i> Print</a>
                             </div>
 
                         </div>

@@ -13,6 +13,7 @@ use App\Service;
 use App\User;
 use App\Sale;
 use App\SalesCommission;
+use Auth;
 
 class ReportsController extends Controller
 {
@@ -36,7 +37,13 @@ class ReportsController extends Controller
      */
     public function daily_commission()
     {
+        $id = auth()->user()->id;
          $daily_commission = SalesCommission::whereRaw('date(created_at) = curdate()')->with('employee','invoice.sale.product')->get();
+
+         $daily_individual_commission = SalesCommission::where('id',$id)->with('employee','invoice.sale.product')->get();
+         dd($daily_individual_commission);
+
+         dd($daily_individual_commission);
         // die(json_encode($daily_commission));
        return view('reports.daily_commission',compact('daily_commission'));
     }
