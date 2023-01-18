@@ -31,7 +31,7 @@
 
       <div class="md-form">
         <!--The "from" Date Picker -->
-        <input placeholder="Selected starting date" type="date" name="startDate" id="startingDate" class="form-control datepicker">
+        <input placeholder="Selected starting date" type="date" name="startDate" id="datefield" class="form-control datepicker">
         <label for="startingDate">Select Start Date</label>
       </div>
 
@@ -43,7 +43,7 @@
 
       <div class="md-form">
         <!--The "to" Date Picker -->
-        <input placeholder="Selected ending date" type="date" name="endDate" id="endingDate" class="form-control datepicker">
+        <input placeholder="Selected ending date" type="date" name="endDate" id="datefield" class="form-control datepicker">
         <label for="endingDate">Select End Date</label>
       </div>
 
@@ -138,6 +138,24 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("datefield").setAttribute("max", today);
+        </script>
+
     </main>
 
 @endsection

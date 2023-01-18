@@ -4,7 +4,7 @@
 
 
 @if(Auth::user()->role_id==2)
-  <a class="app-nav__item bg-info" href="#" data-toggle="" aria-label="">Commission:  500</a>
+  <a class="app-nav__item bg-info" href="#" data-toggle="" aria-label="">Commission: <strong class="text-warning">Ksh {{number_format(\App\SalesCommission::where('employee_id',auth()->user()->id)->sum('commission'))??'0'}}</strong></a>
 @endif
 
 
