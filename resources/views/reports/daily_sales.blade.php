@@ -15,13 +15,63 @@
                 <li class="breadcrumb-item"><i href="#">Double Cutz Spa & Kinyozi Receipt</i></li>
             </ul>
         </div>
+
+          <div class="container my-4">
+       <form  method="POST" action="{{route('filter_sales')}}">
+        @csrf
+    <p><strong>Select Period to view sales</strong></p>
+
+        <hr>
+  
+  <!--Grid row-->
+  <div class="row">
+
+    <!--Grid column-->
+    <div class="col-md-6 mb-4">
+
+      <div class="md-form">
+        <!--The "from" Date Picker -->
+        <input placeholder="Selected starting date" type="date" name="startDate" id="startingDate" class="form-control datepicker">
+        <label for="startingDate">Select Start Date</label>
+      </div>
+
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-md-6 mb-4">
+
+      <div class="md-form">
+        <!--The "to" Date Picker -->
+        <input placeholder="Selected ending date" type="date" name="endDate" id="endingDate" class="form-control datepicker">
+        <label for="endingDate">Select End Date</label>
+      </div>
+
+    </div>
+    <!--Grid column-->
+
+        <div class="col-md-2 mb-4">
+
+      <div class="md-form">
+        <!--The "to" Date Picker -->
+        <input class="btn btn-info" name="Filter Sales" type="submit" value="Filter Sales">
+      </div>
+
+    </div>
+
+  </div>
+  <!--Grid row-->
+</form>
+</div>
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
                     <section class="invoice">
                         <div class="row mb-4">
                             <div class="col-6">
-                                <h2 class="page-header text-info"><i class="fa fa-head text-info"></i> Daily Sales</h2>
+                                <h2 class="page-header text-info"><i class="fa fa-head text-info"></i> Today Sales</h2>
                             </div>
                             <div class="col-6">
                                 <h5 class="text-right text-muted">Date: {{ Date('Y/m/d')}} </h5>

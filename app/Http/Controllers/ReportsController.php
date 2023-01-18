@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Category;
 use App\Product;
 use App\ProductSupplier;
@@ -28,6 +30,21 @@ class ReportsController extends Controller
         $daily_sales = Sale::whereRaw('date(created_at) = curdate()')->with('product')->get();
         // die(json_encode($daily_sales));
        return view('reports.daily_sales',compact('daily_sales'));
+
+    }
+
+       public function filter_sales(Request $request)
+    {
+        $fromDate = $request->startDate;
+        $toDate = $request->endDate;
+        $data = compact('fromDate','toDate');
+        // dd($data);
+
+         $filtered_sales = Sale::whereDate('created_at', '>=', $fromDate)
+            ->whereDate('created_at', '<=', $toDate)
+            ->get();
+
+       return view('reports.filtered_sales',compact('filtered_sales','data'));
     }
 
     /**
@@ -41,9 +58,9 @@ class ReportsController extends Controller
          $daily_commission = SalesCommission::whereRaw('date(created_at) = curdate()')->with('employee','invoice.sale.product')->get();
 
          $daily_individual_commission = SalesCommission::where('id',$id)->with('employee','invoice.sale.product')->get();
-         dd($daily_individual_commission);
+         // dd($daily_individual_commission);
 
-         dd($daily_individual_commission);
+         // dd($daily_individual_commission);
         // die(json_encode($daily_commission));
        return view('reports.daily_commission',compact('daily_commission'));
     }

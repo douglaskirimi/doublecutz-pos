@@ -18,6 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+     <link rel="stylesheet" href="datepicker.min.css">
+  <!-- Or remotely via Unpkg CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/js-datepicker/dist/datepicker.min.css">
+
 </head>
 <body>
     <div id="app">

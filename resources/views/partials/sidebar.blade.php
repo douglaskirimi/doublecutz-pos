@@ -16,8 +16,8 @@
             <ul class="treeview-menu">
                 <li><a class="treeview-item " href="{{route('invoice.create')}}"><i class="icon fa fa-plus"></i>Record Sales </a></li>
           
-                <li><a class="treeview-item " href="{{route('process','1')}}"><i class="icon fa fa-industry"></i>Manage Sales</a></li>
-                <li><a class="treeview-item " href="{{route('process','2')}}"><i class="icon fa fa-file"></i>Reports</a></li>
+                <li><a class="treeview-item " href="{{route('transaction.index')}}"><i class="icon fa fa-industry"></i>Mpesa Transactions History</a></li>
+                {{-- <li><a class="treeview-item " href="{{route('process','2')}}"><i class="icon fa fa-file"></i>Reports</a></li> --}}
                 <!-- <li><a class="treeview-item" href="{{route('process','3')}}"><i class="icon fa fa-edit"></i>Proccessed </a></li> -->
             </ul>
         </li>

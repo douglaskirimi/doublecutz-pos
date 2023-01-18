@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
-use App\Models\MpesaPayments;
+use App\MpesaPayments;
 
 class MpesaTransactionsController extends Controller
 {
@@ -90,10 +90,12 @@ public function stkPush(Request $request) {
 
     if ($stkResCode == 0) {
     Log::info($stkPullResponse->CustomerMessage);
+
+    return back();
     // return view('pages.transactions.completeTransaction',compact('data'))->with('data',$data);
     // return redirect()->route('payment.complete')->with('data',$data);
       
-    return redirect()->action([MpesaTransactionsController::class, 'mpesaRes']);
+    // return redirect()->action([MpesaTransactionsController::class, 'mpesaRes']);
 }
        // else{
        //  } 
@@ -101,10 +103,9 @@ public function stkPush(Request $request) {
 }
 
  public function mpesaRes(Request $request) {
-   if($request != "") {
-    dd($request);
-   }
        $response =json_decode($request->getContent(),true);
+       // Log::info(json_encode($response));
+       // die(json_encode($response));
         $Item = $response['Body']['stkCallback']['CallbackMetadata']['Item'];
         $metadata = array(
             'MerchantRequestID' => $response['Body']['stkCallback']['MerchantRequestID'],
@@ -115,6 +116,9 @@ public function stkPush(Request $request) {
     
         $mpesaData = array_column($Item, 'Value', 'Name');
         $mpesaData = array_merge($metadata, $mpesaData);
+
+        // Log::info($mpesaData);
+        // dd($mpesaData);
         
         if($mpesaData['ResultCode']==0) {
             $newTransaction = new MpesaPayments;   
@@ -124,7 +128,8 @@ public function stkPush(Request $request) {
             $newTransaction->ResultCode = $mpesaData['ResultCode'];
             $newTransaction->ResultDesc = $mpesaData['ResultDesc'];
             $newTransaction->Amount = $mpesaData['Amount'];
-            $newTransaction->MpesaReceiptNumber = $mpesaData['MpesaReceiptNumber'].rand(0,9999);            
+            // $newTransaction->MpesaReceiptNumber = $mpesaData['MpesaReceiptNumber'].rand(0,9999);
+            $newTransaction->MpesaReceiptNumber = $mpesaData['MpesaReceiptNumber'];            
             $newTransaction->Status = "Success";
 
            $transaction_date = $mpesaData['TransactionDate'];
@@ -152,7 +157,7 @@ public function stkPush(Request $request) {
     return response()->json("retry!");
 }
 
-
+}
 
 
     // error_log(print_r($mpesaData, true),0);
@@ -245,4 +250,3 @@ public function stkPush(Request $request) {
     //     }
     // }
 
-    }

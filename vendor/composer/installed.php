@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'f438fafca4bb1b74e90d11aa472853ee18d24c39',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -344,12 +344,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'f438fafca4bb1b74e90d11aa472853ee18d24c39',
             'dev_requirement' => false,
         ),
         'laravel/tinker' => array(
@@ -407,12 +407,12 @@
             'dev_requirement' => true,
         ),
         'nesbot/carbon' => array(
-            'pretty_version' => '2.64.1',
-            'version' => '2.64.1.0',
+            'pretty_version' => '2.65.0',
+            'version' => '2.65.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nesbot/carbon',
             'aliases' => array(),
-            'reference' => 'f2e59963f4c4f4fdfb9fcfd752e8d2e2b79a4e2c',
+            'reference' => '09acf64155c16dc6f580f36569ae89344e9734a3',
             'dev_requirement' => false,
         ),
         'nikic/php-parser' => array(
@@ -613,8 +613,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0',
+                0 => '1.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(

@@ -35,9 +35,12 @@
 
 <!-- Essential javascripts for application to work-->
 <script src="{{asset('/')}}js/jquery-3.2.1.min.js"></script>
+<script src="{{asset('/')}}js/date-picker.js"></script>
 <script src="{{asset('/')}}js/popper.min.js"></script>
 <script src="{{asset('/')}}js/bootstrap.min.js"></script>
-<script src="{{asset('/')}}js/main.js"></script>
+<script src="{{asset('/')}}js/main.js">
+    
+</script>https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
 <!-- The javascript plugin to display page loading on top-->
 <script src="{{asset('/')}}js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->

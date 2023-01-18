@@ -26,4 +26,4 @@ Route::post('/mpesa-stkPush', [MpesaTransactionsController::class, 'stkPush'])->
 Route::get('/Mpesa-payment/responses',[MpesaResponsesController::class, 'stkResponseMsg'])->name('stkResponseMsg');
 
 
-Route::get('/responses', [MpesaTransactionsController::class, 'mpesaRes'])->name('mpesaRes');
+Route::post('/responses', [MpesaTransactionsController::class, 'mpesaRes'])->name('mpesaRes');

@@ -13,7 +13,7 @@
         "genealabs/laravel-caffeine": "*",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "nesbot/carbon": "^2.62"
+        "nesbot/carbon": "^2.65"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
