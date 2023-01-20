@@ -16,6 +16,7 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('customer_id')->unsigned();
+            $table->bigInteger('workagent_id')->unsigned();
             $table->string('total');
             $table->string('status')->default('active');
             $table->string('paid')->default(0);
@@ -23,6 +24,8 @@ class CreateInvoicesTable extends Migration
             $table->string('process')->default(0);
             $table->foreign('customer_id')
                 ->references('id')->on('customers')
+            $table->foreign('workagent_id')
+                ->references('id')->on('users')
                 ->onDelete('cascade');
             $table->timestamps();
         });

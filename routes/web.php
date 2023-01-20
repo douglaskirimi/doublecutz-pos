@@ -49,6 +49,8 @@ Route::post('/reports/daily-sales/filter','ReportsController@filter_sales')->nam
 
 Route::get('/reports/daily-commission','ReportsController@daily_commission')->name('daily_commission');
 
+Route::post('/reports/daily-commission/filter','ReportsController@filter_commission')->name('filter_commission');
+
 Route::get('/payment-complete',function() {
 	return view('invoice.processing_payment')->name('payment.complete');
 });

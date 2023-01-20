@@ -54,15 +54,34 @@ class ReportsController extends Controller
      */
     public function daily_commission()
     {
-        $id = auth()->user()->id;
+        $employees = User::all();
+        // dd($employees);
+        // $id = auth()->user()->id;
          $daily_commission = SalesCommission::whereRaw('date(created_at) = curdate()')->with('employee','invoice.sale.product')->get();
+         // dd($daily_commission);
 
-         $daily_individual_commission = SalesCommission::where('id',$id)->with('employee','invoice.sale.product')->get();
-         // dd($daily_individual_commission);
+         // $daily_individual_commission = SalesCommission::where('id',$id)->with('employee','invoice.sale.product')->get();
 
-         // dd($daily_individual_commission);
-        // die(json_encode($daily_commission));
-       return view('reports.daily_commission',compact('daily_commission'));
+       return view('reports.daily_commissions',compact('daily_commission','employees'));
+    }
+
+   public function filter_commission(Request $request)
+    {
+        $employees = User::all();
+        $selectedDate = $request->date;
+        $employee_id = $request->employee_id;
+        $data = compact('selectedDate','employee_id');
+        // dd($data);
+
+         // $employee_commission = SalesCommission::where('employee_id', '=', $employee_id)->with('employee','invoice.sale.product')->get();
+
+           $employee_commission = SalesCommission::whereDate('created_at', $selectedDate)->where('employee_id',$employee_id)->with('employee','invoice.sale.product')->get();
+
+         
+
+            // dd($employee_commission);
+
+       return view('reports.filter_individual_commission',compact('employee_commission','data','employees'));
     }
 
     /**

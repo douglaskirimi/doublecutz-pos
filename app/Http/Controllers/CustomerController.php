@@ -41,7 +41,7 @@ class CustomerController extends Controller
         $request->validate([
             'name' => 'required|min:3|unique:customers|regex:/^[a-zA-Z ]+$/',
             'address' => 'required|min:3',
-            'mobile' => 'required|min:3|digits:10',
+            'mobile' => 'required|min:3|digits:10|unique:customers',
             'details' => 'required|min:3|',
            
 

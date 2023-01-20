@@ -19,20 +19,18 @@
                   <div class="container my-4">
        <form  method="POST" action="{{route('filter_commission')}}">
         @csrf
-    <p><strong>Select Day and customer to view commissions</strong></p>
-
-        <hr>
+    <p><strong>See Commission Earned By Each Employee</strong></p>
   
   <!--Grid row-->
-  <div class="row"> 
+  <div class="row">
 
     <!--Grid column-->
     <div class="col-md-6 mb-4">
 
       <div class="md-form">
                                 {{-- <label class="control-label">Customer Name</label> --}}
-                                <select name="employee_id" class="form-control" required>
-                                    <option>Select Customer</option>
+                                <select name="employee_id" class="form-control" placeholder="{{old('employee_id')}}" required="required">
+                                    <option>Select Employee</option>
                                     @foreach($employees as $employee)
                                         <option name="employee_id" value="{{$employee->id}}">{{$employee->f_name}} {{$employee->l_name}} </option>
                                     @endforeach
@@ -43,12 +41,12 @@
     </div>
     <!--Grid column-->
 
-       <!--Grid column-->
+        <!--Grid column-->
     <div class="col-md-6 mb-4">
 
       <div class="md-form">
         <!--The "from" Date Picker -->
-        <input placeholder="Selected starting date" type="date" name="date" id="datefield" class="form-control datepicker">
+        <input placeholder="Selected starting date" type="date" name="date" id="datefield" class="form-control datepicker" required>
         <label for="startingDate">Select Date</label>
       </div>
 
@@ -59,7 +57,7 @@
 
       <div class="md-form">
         <!--The "to" Date Picker -->
-        <input class="btn btn-info" name="Filter Sales" type="submit" value="Filter Sales">
+        <input class="btn btn-info" name="Filter Commission" type="submit" value="Generate Commission Report">
       </div>
 
     </div>
@@ -69,14 +67,13 @@
 </form>
 </div>
 
+
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
                     <section class="invoice">
                         <div class="row mb-4">
-                            <div class="col-6">
-                                <h2 class="page-header text-info"><i class="fa fa-head"></i> Commission Report</h2>
-                            </div>
+                            <div class="col-6">                            </div>
                             <div class="col-6">
                                 <h5 class="text-right text-muted">Date: {{ Date('Y/m/d')}} </h5>
                             </div>
@@ -87,22 +84,33 @@
                             </div>
                        
                         </div>
+
+                                <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <section class="invoice">
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <h3 class="page-header text-info"><i class="fa fa-head"></i> Commission Report</h3>
+                            </div>
+                            
+                        </div>
                         <div class="row">
                             <div class="col-12 table-responsive">
                                 <table class="table">
                                     <thead>
                                     
                                     </thead>
-                                    <tbody>
+                                    <tbody class="">
                                     <div style="display: none">
                                         {{$total=0}}
                                     </div>
-                                    @foreach($daily_commission as $commission)
-                                    <tr style="border-collapse:collapse;" class="bg-warning">
+                                    @foreach($employee_commission as $commission)
+                                    <tr style="border-collapse:collapse;font-weight: 700;">
                                         <td colspan="2"><b class="text-muted">Name :</b> {{$commission->employee->f_name }} {{$commission->employee->l_name }}</td>
                                         <td colspan="2"><b class="text-muted">Invoice No. :</b>{{$commission->invoice_id}}</td>
                                        </tr>
-                                       <tr style="border: 1px solid lightseagreen!important;">
+                                       <tr>
                                         <th>Service</th>
                                         <th>Quantity</th>
                                         <th>Price</th>
@@ -118,8 +126,8 @@
 
                                        @endforeach
                                        <tr> 
-                                        <td class="text-right" colspan="2">Total Commission</td>
-                                        <td class="text-right" colspan="2">{{number_format($commission->commission,2)}}</td>
+                                        <td class="text-right text-info" colspan="2"><b>Earned Commission</b></td>
+                                        <td class="text-right text-info" colspan="2"><b>{{number_format($commission->commission,2)}}</b></td>
                                         <div style="display: none">
                                             {{$total +=$commission->commission}}
                                         </div>
@@ -127,10 +135,10 @@
                                     @endforeach
                                     </tbody>
                                     <tfoot>
-                                    <tr style="font-size: 40px;">
+                                    <tr style="font-size: 25px;">
                                         <td></td>
                                         <td></td>
-                                        <td><b>Total</b></td>
+                                        <td><b>Total Commission Earned on {{ $data['selectedDate'] }}</b></td>
                                         <td><b class="total">{{number_format($total,2)}}</b></td>
                                     </tr>
                                     </tfoot>

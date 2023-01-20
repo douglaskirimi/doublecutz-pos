@@ -33,7 +33,18 @@
                                     @foreach($customers as $customer)
                                         <option name="customer_id" value="{{$customer->id}}">{{$customer->name}} </option>
                                     @endforeach
-                                </select>                            </div>
+                                </select>                            
+                            </div>
+                             <div class="form-group col-md-3">
+                                <label class="control-label">Service By</label>
+                                 <select name="user_id" class="form-control" required>
+                                    <option>Service By</option>
+                                    @foreach($work_agents as $work_agents)
+                                        <option name="user_id" value="{{$work_agents->id}}">{{$work_agents->f_name}} {{$work_agents->l_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             <div class="form-group col-md-3">
                                 <label class="control-label">Date</label>
                                 <input name="date"  class="form-control datepicker"  value="<?php echo date('Y-m-d')?>" type="date" placeholder="Enter your email">
@@ -62,7 +73,8 @@
                                     </select></td>
                                 <td><input type="number" name="qty[]" min="0" value="1" class="form-control qty" ></td>
                                 <td><input type="number" name="price[]" min="0" class="form-control price" ></td>
-                                <td><input type="number" name="dis[]" min="0" value="0" class="form-control dis" ></td>
+                                <td>
+                               <input type="number" name="dis[]" min="0" value="0" class="form-control dis" ></td>
                                 <td><input type="text" name="amount[]" value="0"  class="form-control amount"></td>
                                 <td><a   class="btn btn-danger remove"> <i class="fa fa-remove"></i></a></td>
                              </tr>
@@ -94,11 +106,6 @@
 
                 </div>
             </div>
-
-
-
-
-
 
 
     </main>

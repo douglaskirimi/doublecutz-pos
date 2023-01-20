@@ -31,7 +31,7 @@
 
       <div class="md-form">
         <!--The "from" Date Picker -->
-        <input placeholder="Selected starting date" type="date" name="startDate" id="datefield" class="form-control datepicker">
+        <input placeholder="Selected starting date" type="date" name="startDate" id="datefield" class="form-control datepicker" required="required">
         <label for="startingDate">Select Start Date</label>
       </div>
 
@@ -43,7 +43,7 @@
 
       <div class="md-form">
         <!--The "to" Date Picker -->
-        <input placeholder="Selected ending date" type="date" name="endDate" id="datefield" class="form-control datepicker">
+        <input placeholder="Selected ending date" type="date" name="endDate" id="datefield" class="form-control datepicker"required="required">
         <label for="endingDate">Select End Date</label>
       </div>
 
@@ -90,8 +90,8 @@
                                     <tr>
                                         <th>Product</th>
                                         <th>Qty</th>
-                                        <th>Price</th>
-                                        <th>Amount</th>
+                                        <th>Unit Price</th>
+                                        <th>Total Price</th>
                                      </tr>
                                     </thead>
                                     <tbody>

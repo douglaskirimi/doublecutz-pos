@@ -8,6 +8,7 @@ use App\Service;
 use App\Sale;
 use App\Supplier;
 use App\Invoice;
+use App\User;
 use App\SalesCommission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -58,9 +59,10 @@ class InvoiceController extends Controller
     public function create()
     {
         $customers = Customer::all();
+        $work_agents = User::all();
         $products = Product::all();
         $services = Service::all();
-        return view('invoice.create', compact('customers', 'products','services'));
+        return view('invoice.create', compact('customers','work_agents','products','services'));
     }
 
     /**
@@ -75,6 +77,7 @@ class InvoiceController extends Controller
         $request->validate([
 
             'customer_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'product_id' => 'required',
             'product_id.*' => 'required|numeric',
             'qty' => 'required',
@@ -89,6 +92,7 @@ class InvoiceController extends Controller
         // die("jj");
         $invoice = new Invoice();
         $invoice->customer_id = $request->customer_id;
+        $invoice->workagent_id = $request->user_id;
         $invoice->total = 1000;
         $invoice->process = 'pending';
         $invoice->save();
@@ -111,7 +115,8 @@ class InvoiceController extends Controller
         // dd($commission);
         $sc = new SalesCommission;        
         $sc->commission = $commission;  
-        $sc->employee_id = auth()->user()->id;  
+        // $sc->employee_id = auth()->user()->id;  
+        $sc->employee_id =$request->user_id;  
         $sc->invoice_id = $invoice->id;
         $sc->save();
 
