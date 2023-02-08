@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
+    // public $timestamps = FALSE; 
+
     public function invoice(){
         return $this->belongsTo('App\Invoice');
     }

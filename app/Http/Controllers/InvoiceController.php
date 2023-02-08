@@ -77,6 +77,7 @@ class InvoiceController extends Controller
         $request->validate([
 
             'customer_id' => 'required|numeric',
+            'created_on' => 'required',
             'user_id' => 'required|numeric',
             'product_id' => 'required',
             'product_id.*' => 'required|numeric',
@@ -92,6 +93,8 @@ class InvoiceController extends Controller
         // die("jj");
         $invoice = new Invoice();
         $invoice->customer_id = $request->customer_id;
+        $invoice->created_on = $request->created_on;
+        // dd($invoice->created_on);
         $invoice->workagent_id = $request->user_id;
         $invoice->total = 1000;
         $invoice->process = 'pending';
@@ -106,6 +109,7 @@ class InvoiceController extends Controller
             $sale->amount = $request->amount[$key];
             $sale->product_id = $request->product_id[$key];
             $sale->invoice_id = $invoice->id;
+            $sale->created_on = $request->created_on;
             $sale->save();
             $product = Product::find($product_id);
             $amount += $request->amount[$key];
@@ -118,6 +122,7 @@ class InvoiceController extends Controller
         // $sc->employee_id = auth()->user()->id;  
         $sc->employee_id =$request->user_id;  
         $sc->invoice_id = $invoice->id;
+        $sc->created_on = $request->created_on;
         $sc->save();
 
         $invoice->id =  $invoice->id;

@@ -47,7 +47,7 @@
 
                             <div class="form-group col-md-3">
                                 <label class="control-label">Date</label>
-                                <input name="date"  class="form-control datepicker"  value="<?php echo date('Y-m-d')?>" type="date" placeholder="Enter your email">
+                                <input name="created_on"  class="form-control datepicker"  value="<?php echo date('YYYY-MM-DD hh:mm:ss')?>" type="date" placeholder="Creation Date...">
                             </div>
 
 

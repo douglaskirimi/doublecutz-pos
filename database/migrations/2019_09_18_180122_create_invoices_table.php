@@ -16,6 +16,7 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('customer_id')->unsigned();
+            $table->dateTime('created_on', $precision = 4);
             $table->bigInteger('workagent_id')->unsigned();
             $table->string('total');
             $table->string('status')->default('active');
