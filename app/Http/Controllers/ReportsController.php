@@ -27,7 +27,7 @@ class ReportsController extends Controller
     public function daily_sales()
     {
         // $daily_sales = Sale::all();
-        $daily_sales = Sale::whereRaw('date(created_on) = curdate()')->with('product')->get();
+        $daily_sales = Sale::whereRaw('date(created_at) = curdate()')->whereRaw('date(created_on) = curdate()')->with('product')->get();
         // die(json_encode($daily_sales));
        return view('reports.daily_sales',compact('daily_sales'));
 
@@ -57,7 +57,7 @@ class ReportsController extends Controller
         $employees = User::all();
         // dd($employees);
         // $id = auth()->user()->id;
-         $daily_commission = SalesCommission::whereRaw('date(created_on) = curdate()')->with('employee','invoice.sale.product')->get();
+         $daily_commission = SalesCommission::whereRaw('date(created_at) = curdate()')->whereRaw('date(created_on) = curdate()')->with('employee','invoice.sale.product')->get();
          // dd($daily_commission);
 
          // $daily_individual_commission = SalesCommission::where('id',$id)->with('employee','invoice.sale.product')->get();
