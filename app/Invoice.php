@@ -9,10 +9,16 @@ class Invoice extends Model
 
     public function sale(){
         return $this->hasMany('App\Sale');
+    } 
+    public function salecommissions(){
+        return $this->hasMany('App\SaleCommission','workagent_id');
     }
 
     public function customer(){
         return $this->belongsTo('App\Customer');
+    }
+    public function user(){
+        return $this->belongsTo('App\User','workagent_id');
     }
 
     public function payment(){

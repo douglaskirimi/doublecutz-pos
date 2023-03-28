@@ -41,7 +41,7 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Product</th>
+                                        <th>Service</th>
                                         <th>Qty</th>
                                         <th>Price</th>
                                         <th>Amount</th>

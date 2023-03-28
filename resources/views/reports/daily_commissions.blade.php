@@ -78,8 +78,8 @@
                             <div class="col-6">
                                 <h2 class="page-header text-info"><i class="fa fa-head text-info"></i> Daily Employee Commissions</h2>
                             </div>
-                            <div class="col-6">
-                                <h5 class="text-right text-muted">Date: {{ Date('Y/m/d')}} </h5>
+                          <div class="col-6">
+                                <h5 class="text-right text-primary">Today Date : {{ date("F j, Y, g:i a") }} </h5>
                             </div>
                         </div>
                         <div class="row invoice-info">
@@ -96,6 +96,7 @@
                                         <th>Employee Name</th>
                                         <th>Invoice Number</th>
                                         <th>Commission Earned</th>
+                                        {{-- <th>Action</th> --}}
                                      </tr>
                                     </thead>
                                     <tbody>
@@ -103,10 +104,12 @@
                                         {{$total=0}}
                                     </div>
                                     @foreach($daily_commission as $commission)
+
                                     <tr>
                                         <td class="">{{$commission->employee->f_name}} {{$commission->employee->l_name}}</td>
                                         <td>{{$commission->invoice_id}}</td>
                                         <td>{{$commission->commission}}</td>
+                                         
                                         <div style="display: none">
                                             {{$total +=$commission->commission}}
                                         </div>

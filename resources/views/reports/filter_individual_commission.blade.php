@@ -75,7 +75,7 @@
                         <div class="row mb-4">
                             <div class="col-6">                            </div>
                             <div class="col-6">
-                                <h5 class="text-right text-muted">Date: {{ Date('Y/m/d')}} </h5>
+                                <h5 class="text-right text-primary">Today Date : {{ date("F j, Y, g:i a") }} </h5>
                             </div>
                         </div>
                         <div class="row invoice-info">

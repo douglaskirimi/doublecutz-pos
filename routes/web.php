@@ -54,3 +54,9 @@ Route::post('/rveports/daily-commission/filter','ReportsController@filter_commis
 Route::get('/payment-complete',function() {
 	return view('invoice.processing_payment')->name('payment.complete');
 });
+
+Route::get('/invoice/edit/{id}','ReportsController@edit')->name('invoice.edit1');
+Route::post('/invoice-sale/update/{id}','ReportsController@update')->name('sale.update');
+
+
+Route::post('/sales/reports/{id}','ReportsController@destroy')->name('sale.destroy');

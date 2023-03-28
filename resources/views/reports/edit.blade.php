@@ -7,13 +7,13 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-edit"></i> Form</h1>
+                <h1><i class="fa fa-edit"></i> Update Sales</h1>
                 <p></p>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item">Forms</li>
-                <li class="breadcrumb-item"><a href="#">Sample Forms</a></li>
+                <li class="breadcrumb-item">Update</li>
+                <li class="breadcrumb-item"><a href="#">Sales/Invoices</a></li>
             </ul>
         </div>
 
@@ -22,11 +22,10 @@
             <div class="clearix"></div>
             <div class="col-md-12">
                 <div class="tile">
-                    <h3 class="tile-title">Invoice</h3>
+                    <h3 class="tile-title">Update Sales Records </h3>
                     <div class="tile-body">
                         <form  method="POST" action="{{route('invoice.update',$invoice->id)}}">
                             @csrf
-                            @method('PUT')
                             <div class="form-group col-md-3">
                                 <label class="control-label">Customer Name</label>
                                 <select name="customer_id" class="form-control">
@@ -37,19 +36,14 @@
                                 </select>                            
                             </div>
 
-                                <div class="form-group col-md-3">
-                                <label class="control-label">Served By</label>
-                                <select name="user_id" class="form-control">
-                                    <option name="user_id" value="{{$invoice->user->id}}">{{$invoice->user->f_name}} {{$invoice->user->l_name}}</option>
-                                    @foreach($users as $user)
-                                        <option name="user_id" value="{{$user->id}}">{{$user->f_name}} </option>
-                                    @endforeach
-                                </select>                            
-                            </div>
-
                             <div class="form-group col-md-3">
-                                {{-- <label class="control-label">Date</label> --}}
-                                <input name="date"  class="form-control datepicker"  value="{{<?php echo date('Y-m-d')?>}}" type="hidden">
+                                @foreach($sales as $sale)
+                                <label class="control-label">Date</label>
+                                <input name="created_on "  class="form-control datepicker"  value="{{$sale->created_on}}" type="date" placeholder="Enter your email">
+
+
+                                {{-- <input name="created_on "  class="form-control datepicker"  value="{{(new DateTime($sale->created_on))->format('Y-m-d') }}" type="date" placeholder="Enter your email"> --}}
+                                    @endforeach
                             </div>
 
 
@@ -57,7 +51,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Service Name</th>
+                                    <th scope="col">Product Name</th>
                                     <th scope="col">Qty</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Discount</th>
@@ -96,7 +90,7 @@
                             </table>
 
                             <div >
-                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-primary" type="submit">Update</button>
                             </div>
                         </form>
                     </div>

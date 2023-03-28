@@ -119,8 +119,8 @@ class InvoiceController extends Controller
         // dd($commission);
         $sc = new SalesCommission;        
         $sc->commission = $commission;  
-        // $sc->employee_id = auth()->user()->id;  
-        $sc->employee_id =$request->user_id;  
+        // $sc->workagent_id = auth()->user()->id;  
+        $sc->workagent_id =$request->user_id;  
         $sc->invoice_id = $invoice->id;
         $sc->created_on = $request->created_on;
         $sc->save();
@@ -173,10 +173,12 @@ class InvoiceController extends Controller
     public function edit($id)
     {
         $customers = Customer::all();
+        $users = User::all();
         $products = Product::orderBy('id', 'DESC')->get();
         $invoice = Invoice::findOrFail($id);
+        // dd($invoice->created_on);
         $sales = Sale::where('invoice_id', $id)->get();
-        return view('invoice.edit', compact('customers', 'products', 'invoice', 'sales'));
+        return view('invoice.edit', compact('customers', 'products', 'invoice', 'sales','users'));
     }
 
     /**
@@ -188,6 +190,7 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->created_on);
         $request->validate([
 
             'customer_id' => 'required|numeric',
@@ -204,7 +207,16 @@ class InvoiceController extends Controller
         ]);
         $invoice = Invoice::findOrFail($id);
         $invoice->customer_id = $request->customer_id;
-        $invoice->total = 1000;
+        $invoice->workagent_id = $request->user_id;        
+        $amount = 0;
+        $commission = 0;
+
+        foreach ($request->product_id as $key => $product_id) {
+        $invoice->total = $request->amount[$key];
+        $amount = $request->amount[$key];        
+        $product = Product::find($product_id);
+        $commission += $product->commission_percentage*$amount/100; 
+        }
         $invoice->save();
 
         Sale::where('invoice_id', $id)->delete();
@@ -217,10 +229,26 @@ class InvoiceController extends Controller
             $sale->amount = $request->amount[$key];
             $sale->product_id = $request->product_id[$key];
             $sale->invoice_id = $invoice->id;
+            $sale->created_on = $invoice->created_on;
             $sale->save();
         }
 
-        return redirect('invoice/' . $invoice->id)->with('message', 'invoice created Successfully');
+        SalesCommission::where('invoice_id', $id)->delete();
+
+        foreach ($request->product_id as $key => $product_id) {
+        $sc = new SalesCommission();
+        $sc->commission = $commission;   
+        $sc->invoice_id =$id;  
+        $sc->workagent_id =$request->user_id;  
+        $sc->created_on = $invoice->created_on;
+        $sc->save();
+        }
+
+        // Flash a success message to the session
+        session()->flash('alert-success', 'Record updated successfully!');
+
+        return redirect()->action('ReportsController@daily_sales');
+        // return back();
     }
 
     /**
@@ -234,7 +262,12 @@ class InvoiceController extends Controller
     {
         $invoice = Invoice::findOrFail($id);
         $invoice->delete();
-        return redirect()->back();
+
+        
+        // Flash a success message to the session
+        session()->flash('alert-success', 'Record deleted successfully!!!');
+
+        return redirect()->action('ReportsController@daily_sales');
     }
     public function approve($id)
     {

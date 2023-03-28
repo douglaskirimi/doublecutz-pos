@@ -45,7 +45,7 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'f_name' => 'required|min:3|unique:users|regex:/^[a-zA-Z ]+$/',
+            'f_name' => 'required|unique:users|regex:/^[a-zA-Z ]+$/',
             'l_name' => 'required',
             'email' => 'required',
             'role_id' => 'required',

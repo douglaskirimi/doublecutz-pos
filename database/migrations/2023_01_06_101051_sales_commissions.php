@@ -15,9 +15,16 @@ class SalesCommissions extends Migration
     {
          Schema::create('sales_commissions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('employee_id');
-            $table->string('invoice_id');
+            $table->bigInteger('workagent_id')->unsigned();
+            $table->bigInteger('invoice_id')->unsigned();
             $table->float('commission');
+            $table->dateTime('created_on', $precision = 4);
+            $table->foreign('workagent_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+            $table->foreign('invoice_id')
+                ->references('id')->on('invoices')
+                ->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -30,6 +37,6 @@ class SalesCommissions extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sales_commissions');
     }
 }

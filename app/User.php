@@ -37,6 +37,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function invoice(){
+        return $this->hasMany('App\Invoice','workagent_id');
+    }
+
     public function getFullNameAttribute() {
         return ucfirst($this->f_name) . ' ' . ucfirst($this->l_name);
     }

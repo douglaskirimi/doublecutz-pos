@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Category;
+use App\Customer;
 use App\Product;
+use App\Invoice;
 use App\ProductSupplier;
 use App\Supplier;
 use App\Tax;
@@ -69,13 +71,13 @@ class ReportsController extends Controller
     {
         $employees = User::all();
         $selectedDate = $request->date;
-        $employee_id = $request->employee_id;
-        $data = compact('selectedDate','employee_id');
+        $workagent_id = $request->workagent_id;
+        $data = compact('selectedDate','workagent_id');
         // dd($data);
 
-         // $employee_commission = SalesCommission::where('employee_id', '=', $employee_id)->with('employee','invoice.sale.product')->get();
+         // $employee_commission = SalesCommission::where('workagent_id', '=', $workagent_id)->with('employee','invoice.sale.product')->get();
 
-           $employee_commission = SalesCommission::whereDate('created_on', $selectedDate)->where('employee_id',$employee_id)->with('employee','invoice.sale.product')->get();
+           $employee_commission = SalesCommission::whereDate('created_on', $selectedDate)->where('workagent_id',$workagent_id)->with('employee','invoice.sale.product')->get();
 
          
 
@@ -114,7 +116,21 @@ class ReportsController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $reports_data = Sale::findorFail($id);
+        $invoice = Invoice::findorFail($id);
+        $sales = Sale::where('invoice_id', $id)->get();
+
+        $product_id =  $sales->pluck('product_id');
+        $products=Product::where('id', $product_id)->get();
+        // dd($products);
+        // dd($reports_data);
+
+        $customers = Customer::all();
+        $work_agents = User::all();
+        $products = Product::all();
+        $services = Service::all();
+        return view('reports.edit', compact('customers','work_agents','products','services','invoice','sales'));
+       // return view('reports.edit', compact('reports_data'));
     }
 
     /**
@@ -124,10 +140,51 @@ class ReportsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+ public function update(Request $request, $id)
     {
-        //
+        dd($request->created_on);
+        // $request->validate([
+
+        //     'customer_id' => 'required|numeric',
+        //     'created_on' => 'required',
+        //     'product_id' => 'required',
+        //     'product_id.*' => 'required|numeric',
+        //     'qty' => 'required',
+        //     'qty.*' => 'required|numeric|gt:0',
+        //     'price' => 'required',
+        //     'price.*' => 'required|numeric|gt:0',
+        //     'dis' => 'required',
+        //     'dis.*' => 'required|numeric',
+        //     'amount' => 'required',
+        //     'amount.*' => 'required|numeric|gt:0',
+        // ]);
+        $invoice = Invoice::findOrFail($id);
+        $invoice->customer_id = $request->customer_id;
+        // $fjjf= $invoice->customer_id;
+        // dd($fjjf);
+        // $invoice->workagent_id = $request->served_by;
+        $invoice->total = 1000;
+        $invoice->save();
+
+        Sale::where('invoice_id', $id)->delete();
+
+        foreach ($request->product_id as $key => $product_id) {
+            $sale = new Sale();
+            $sale->qty = $request->qty[$key];
+            $sale->price = $request->price[$key];
+            $sale->dis = $request->dis[$key];
+            $sale->amount = $request->amount[$key];
+            $sale->product_id = $request->product_id[$key];
+            $sale->invoice_id = $invoice->id;
+            $sale->created_on = $request->created_on;
+            $sale->save();
+            dd('success');
+        }
+
+        // return redirect('invoice/' . $invoice->id)->with('message', 'invoice created Successfully');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -137,6 +194,16 @@ class ReportsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sale = Sale::find($id);
+        $sale->delete();
+
+
+        $invoice = Invoice::find($id);
+        $invoice->delete();
+
+
+        $salesCommission = SalesCommission::find($id);
+        $salesCommission->delete();
+        return redirect()->back();
     }
 }

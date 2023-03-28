@@ -74,7 +74,7 @@
                                 <h3 class="page-header text-info"><i class="fa fa-head text-info"></i> Sales from {{ $data['fromDate'] }} to {{ $data['toDate'] }}</h3>
                             </div>
                             <div class="col-6">
-                                <h5 class="text-right text-muted">Date: {{ Date('Y/m/d')}} </h5>
+                                <h5 class="text-right text-primary">Today Date : {{ date("F j, Y, g:i a") }} </h5>
                             </div>
                         </div>
                         <div class="row invoice-info">
@@ -88,10 +88,11 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Product</th>
-                                        <th>Qty</th>
+                                        <th>Service</th>
+                                        <th>Quantity</th>
                                         <th>Price</th>
                                         <th>Amount</th>
+                                        <th>Action</th>
                                      </tr>
                                     </thead>
                                     <tbody>
@@ -104,6 +105,20 @@
                                         <td>{{$sale->qty}}</td>
                                         <td>{{$sale->price}}</td>
                                         <td>{{$sale->amount}}</td>
+
+                                        <td>
+                                   <a class="btn btn-primary" href="{{route('invoice.edit', $sale->invoice_id)}}"><i class="fa fa-edit" ></i></a>
+
+                                    <a class="btn btn-info" href="{{route('invoice.edit', $sale->invoice_id)}}"><i class="fa fa-edit" ></i></a>
+                                    
+                                         <button class="btn btn-danger waves-effect" type="submit" onclick="deleteTag({{ $sale->id }})">
+                                             <i class="fa fa-trash-o"></i>
+                                         </button>
+                                         <form id="delete-form-{{ $sale->id }}" action="{{ route('sale.destroy',$sale->id) }}" method="POST" style="display: none;">
+                                             @csrf
+                                         </form>
+                                     </td>
+                                     
                                         <div style="display: none">
                                             {{$total +=$sale->amount}}
                                         </div>

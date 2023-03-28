@@ -24,7 +24,7 @@ class CreateInvoicesTable extends Migration
             $table->string('balance')->default(0);
             $table->string('process')->default(0);
             $table->foreign('customer_id')
-                ->references('id')->on('customers')
+                ->references('id')->on('customers');
             $table->foreign('workagent_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
