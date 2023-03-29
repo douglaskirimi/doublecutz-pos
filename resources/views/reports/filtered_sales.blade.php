@@ -106,16 +106,16 @@
                                         <td>{{$sale->price}}</td>
                                         <td>{{$sale->amount}}</td>
 
-                                        <td>
-                                   <a class="btn btn-primary" href="{{route('invoice.edit', $sale->invoice_id)}}"><i class="fa fa-edit" ></i></a>
+                                             <td>
+                                 
+                                    <a class="btn btn-primary" href="{{route('invoice.edit', $sale->invoice_id)}}"><i class="fa fa-edit" ></i></a>
 
-                                    <a class="btn btn-info" href="{{route('invoice.edit', $sale->invoice_id)}}"><i class="fa fa-edit" ></i></a>
-                                    
-                                         <button class="btn btn-danger waves-effect" type="submit" onclick="deleteTag({{ $sale->id }})">
+                                         <button class="btn btn-danger waves-effect" type="submit" onclick="deleteTag({{ $sale->invoice->id }})">
                                              <i class="fa fa-trash-o"></i>
                                          </button>
-                                         <form id="delete-form-{{ $sale->id }}" action="{{ route('sale.destroy',$sale->id) }}" method="POST" style="display: none;">
+                                         <form id="delete-form-{{ $sale->invoice->id }}" action="{{ route('invoice.destroy',$sale->invoice->id) }}" method="POST" style="display: none;">
                                              @csrf
+                                             @method('DELETE')
                                          </form>
                                      </td>
                                      
